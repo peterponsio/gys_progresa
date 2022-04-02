@@ -1,0 +1,7 @@
+{
+  "name": "gys",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
