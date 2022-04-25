@@ -1,0 +1,26 @@
+img{
+    height: 3.5vh;
+}
+p{
+    font-family: 'Noto-Normal';
+    font-size: 1vh;
+    padding: 0;
+    margin: 0;
+}
+
+ion-tab-button{
+    --background-focused: rgb(226, 128, 128, 0.5);
+    --color: #292626;
+    --color-selected:rgb(226, 128, 128, 1)
+}
+
+ion-tab-bar{
+    --background: #fff;
+    --border:0.5px solid rgb(238, 235, 235,0.5);
+    border-radius: 16px 16px 0px 0px;
+}
+ion-tabs{
+    --background: #fff;
+    border-radius: 16px 16px 0px 0px;
+    background-color: #fff;
+}

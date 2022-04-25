@@ -1,0 +1,39 @@
+
+<ion-content>
+  <app-header-basic title=""></app-header-basic>
+  
+  <div class="logoIntro">
+    <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
+  </div>
+
+  <div class="loginFieldsContainer">
+    <div class="inputsContainer">
+      <ion-input type="text" placeholder="email"></ion-input>
+    </div>
+    <div class="inputsContainer passwordField">
+      <ion-input [type]="passType" placeholder="password"></ion-input>
+      <img (click)="onClickSeePass()" style="height: 3.5vh;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
+    </div>
+  </div>
+  <div class="recoverPass">
+    <p (click)="onClickRecoverPass()">¿Has olvidado tu contraseña?</p>
+  </div>
+  <div class="recorderContainer">
+    <ion-toggle></ion-toggle>
+    <p>Recuerdame</p>
+  </div>
+
+  
+  <div class="bottomBtns">
+    <div (click)="onClickLoginMail()" class="loginBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        Iniciar sesión
+      </ion-button>
+    </div>
+    <div class="registerDontHaveAccContainer">
+      <p>¿No tienes una cuenta? <b  (click)="onClickGoRegister()">Regístrate</b> </p>
+    </div>
+  </div>
+ 
+
+</ion-content>

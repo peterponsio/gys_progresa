@@ -1,0 +1,23 @@
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3vh;
+    margin-right: 3vh !important;
+}
+
+.backBtn{
+    height: 4vh;
+
+}
+
+.tittleCont{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto-Sans';
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    margin-right: 3vh !important;
+}

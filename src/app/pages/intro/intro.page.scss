@@ -1,0 +1,93 @@
+.logoIntro{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 12vh;
+    justify-content: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 80%;
+}
+
+
+.headerIntro{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 6vw;
+    margin-top: 1vh;
+    font-size: 1.5vh;
+    font-family: 'Noto-Sans';
+}
+
+.slideIntro{
+    height: 40%;
+}
+
+.slideIntro ion-slides{
+    height: 100%;
+}
+ion-slide{
+    display: flex;
+    flex-direction: column;
+    padding: 0vh;
+    margin: 0vh;
+}
+
+ion-slides{
+    --bullet-background-active:red;
+}
+
+.slideHeaderText{
+    font-size: 3vh;
+    font-weight: 900;
+}
+
+.bottomBtns{
+    position: fixed;
+    bottom: 5vh;
+    width: 100%;
+}
+
+.loginGoogleBtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid #747C7E;
+    border-radius: 8px;
+    width: 90%;
+    height: 6vh;
+    box-shadow: 0px 12px 8px -8px rgba(0, 0, 0, 0.25);
+}
+.loginGoogleBtn * {
+    --color: #000000;
+    font-family: 'Noto-Sans';
+    font-weight: 900;
+}
+
+.loginBtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid rgb(223, 64, 64);
+    border-radius: 8px;
+    width: 90%;
+    height: 6vh;
+    margin-top: 2vh;
+    box-shadow: 0px 12px 8px -8px rgba(0, 0, 0, 0.25);
+}
+.loginBtn * {
+    --color: #ff5858;
+    font-family: 'Noto-Sans';
+    font-weight: 900;
+}
+ion-button{
+    width: 100%;
+}
+ion-button * {
+    padding: 1vh;
+}

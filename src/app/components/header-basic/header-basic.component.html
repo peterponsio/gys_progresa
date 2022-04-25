@@ -1,0 +1,12 @@
+<div *ngIf="title==''" style="margin-top: 2vh;" class="headerContainer">
+  <img (click)="onClickGoBack()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
+  <div class="tittleCont">
+    <p>{{title}}</p>
+  </div>
+</div>
+<div *ngIf="title!=''" style="margin-top: 2vh;" class="headerContainer">
+  <img (click)="onClickGoBack()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
+  <div class="tittleCont">
+    <p>{{title}}</p>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+
+<ion-content>
+  <app-header-basic title=""></app-header-basic>
+
+  <div class="logoIntro">
+    <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
+  </div>
+
+  
+  <div class="loginFieldsContainer">
+    <div class="inputsContainer">
+      <ion-input type="text" placeholder="nombre"></ion-input>
+    </div>
+    <div class="inputsContainer">
+      <ion-input type="text" placeholder="email"></ion-input>
+    </div>
+    <div class="inputsContainer passwordField">
+      <ion-input [type]="passType" placeholder="password"></ion-input>
+      <img (click)="onClickSeePass()" style="height: 3.5vh;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
+    </div>
+    <div class="inputsContainer passwordField">
+      <ion-input [type]="passType2" placeholder="password"></ion-input>
+      <img (click)="onClickSeePass2()" style="height: 3.5vh;" src="{{seePass2 ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
+    </div>
+  </div>
+  <div class="recorderContainer">
+    <div class="textConditions">
+      <p>Acepto las <u>condiciones de uso</u>  y la <u>política de privacidad</u> </p>
+    </div>
+    <div class="toggleRegister">
+      <ion-toggle></ion-toggle>
+    </div>
+  </div>
+
+  
+  <div class="bottomBtns">
+    <div (click)="onClickLoginMail()" class="loginBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        Crear cuenta
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

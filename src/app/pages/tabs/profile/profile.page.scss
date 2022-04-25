@@ -1,0 +1,41 @@
+.headerProfile{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    margin: 0 auto;
+    margin-top: 2vh;
+    border-bottom: 0.2px solid rgb(105, 102, 102,0.3);
+    div{
+        margin-left: 4vw;
+        font-size: 2vh;
+        font-family: 'Noto-Normal';
+    }
+    img{
+        height: 7vh;
+        border-radius: 100%;
+    }
+}
+.navElementProfile  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 3vw;
+    padding-right: 2vw !important;
+    border-bottom: 0.2px solid rgb(105, 102, 102,0.3);
+    img{
+        height: 3.5vh;
+    }
+    p{
+        font-size: 2vh;
+        font-family: 'Noto-Sans';
+        margin-left: 2vw;
+    }
+    div{
+        display: flex;
+        align-items: center;
+    }
+}

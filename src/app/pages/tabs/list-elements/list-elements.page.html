@@ -1,0 +1,66 @@
+
+<ion-content>
+
+  <!-- hEADER  -->
+  <div class="headerFilters">
+    <form  [formGroup]="searchForm">
+    <div [ngClass]="{filterOn: isFilterSearchOn}" class="searchBarContainer">
+      <img src="../../../../assets/icon/search.svg" alt="">
+      <ion-input formControlName="searchBar" (ionFocus)="searchGotFocus()" (ionBlur)="searchLoseFocus()" type="text" placeholder="Busca en GYS">
+      </ion-input>
+      <img *ngIf="isFilterSearchOn && searchForm.getRawValue().searchBar.length>0" (click)="onClickClearSerchBar()" src="../../../../assets/icon/cancel.svg" alt="">
+    </div>
+  
+    <div class="categorySlides">
+      <ion-slides [scrollbar]="false" mode="ios" scrollbar="ios" [options]="slidesOptions">
+        <ion-slide *ngFor="let item of [1,2,3,4,54,5,6,7,7,7,3,423,423,423,324,234]">
+          <img src="../../../../assets/icon/add.svg" alt="">
+          <p>Category</p>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </form>
+  </div>
+
+  <!--  -->
+
+  <div class="filterViewContainer">
+    <div class="categoryText">
+      category : todo
+    </div>
+    <div class="typeViewContainer">
+      <img (click)="onClickChangeView('list')" src="../../../../assets/icon/listView.svg" alt="">
+      <img (click)="onClickChangeView('cards')" src="../../../../assets/icon/grid.svg" alt="">
+    </div>
+  </div>
+
+  <div class="elementsContainer">
+
+    <div (click)="onClickSeeElementDetails(item)" class="elemntContainer" *ngFor="let item of [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]">
+      <div class="imgElement">
+        <img src="https://placeholder.pics/svg/1200" alt="">
+      </div>
+      <div class="elemtsListContainerText">
+        <div class="listElementHeader">
+          <div class="titleAnuncio">Titulo del anuncio</div>
+          <div class="favBtn">
+            <img src="../../../../assets/icon/favorite.svg" alt="">
+            <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+          </div>
+        </div>
+        <div class="priceContainer">
+          <p> <b>{{11 | currency}}</b></p>
+        </div>
+        <div class="locationContainer">
+            <img src="../../../../assets/icon/location.svg" alt="">
+            <p>location</p>
+        </div>
+        <div class="descContainer">
+          <p>descripcion</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

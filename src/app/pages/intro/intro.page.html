@@ -1,0 +1,48 @@
+
+<ion-content>
+  
+  <div (click)="onClickGoLIst()" class="headerIntro">
+    <p>saltar </p>
+  </div>
+
+  <div class="logoIntro">
+    <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
+  </div>
+
+  <div class="slideIntro">
+    <ion-slides  pager="true" [options]="slideOpts">
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="bottomBtns">
+    <div  (click)="onClickLoginGoogle()" class="loginGoogleBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        <img src="../../../assets/icon/Google__G__Logo.svg" alt="">
+        Continuar con Google
+      </ion-button>
+    </div>  
+    <div (click)="onClickLoginMail()" class="loginBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        <img src="../../../assets/icon/email_black_24dp 1.svg" alt="">
+        Continuar con email
+      </ion-button>
+    </div>
+  </div>
+   
+</ion-content>
