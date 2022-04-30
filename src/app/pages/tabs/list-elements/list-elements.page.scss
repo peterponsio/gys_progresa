@@ -160,3 +160,21 @@ ion-slide {
     }
   
 }
+
+
+.back-to-top-btn {
+    background: #000000;
+    position: fixed;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2vh;
+    z-index: 999;
+}

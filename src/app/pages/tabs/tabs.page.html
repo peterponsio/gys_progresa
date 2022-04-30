@@ -1,20 +1,20 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom,top">
-    <ion-tab-button tab="list-elements">
-       <img src="../../../assets/icon/list.svg" alt="">
-     
+    <ion-tab-button (click)="onClickSelectedTab('list')" tab="list-elements">
+       <img *ngIf="optionSelected=='list'"  src="../../../assets/icon/list_red.svg" alt="">
+        <img *ngIf="optionSelected!='list'"  src="../../../assets/icon/list.svg" alt="">
     </ion-tab-button>
-    <ion-tab-button tab="add-new-elements">
-      <img src="../../../assets/icon/add.svg" alt="">
-
+    <ion-tab-button (click)="onClickSelectedTab('add')" tab="add-new-elements">
+      <img *ngIf="optionSelected=='add'" src="../../../assets/icon/add_red.svg" alt="">
+      <img  *ngIf="optionSelected!='add'"   src="../../../assets/icon/add.svg" alt="">
     </ion-tab-button>
-    <ion-tab-button tab="list-chats">
-       <img src="../../../assets/icon/chat.svg" alt="">
-   
+    <ion-tab-button (click)="onClickSelectedTab('chats')" tab="list-chats">
+       <img *ngIf="optionSelected=='chats'" src="../../../assets/icon/chat_red.svg" alt="">
+       <img *ngIf="optionSelected!='chats'"  src="../../../assets/icon/chat.svg" alt="">
     </ion-tab-button>
-    <ion-tab-button tab="profile">
-       <img src="../../../assets/icon/account.svg" alt="">
-     
+    <ion-tab-button (click)="onClickSelectedTab('profile')" tab="profile">
+       <img *ngIf="optionSelected=='profile'" src="../../../assets/icon/account_red.svg" alt="">
+       <img  *ngIf="optionSelected!='profile'" src="../../../assets/icon/account.svg" alt="">
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

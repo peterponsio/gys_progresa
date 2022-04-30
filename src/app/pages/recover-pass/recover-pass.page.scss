@@ -1,0 +1,72 @@
+.logoIntro{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 6vh;
+    justify-content: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 80%;
+}
+
+.loginFieldsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2vh;
+}
+.inputsContainer{
+    border-bottom: 0.2px solid  #c7c0c0;
+    padding-top: 4vh;
+}
+.inputsContainer *{
+    margin-left: 5vw;
+    margin-right: 3vw;
+}
+
+.textInfoForRecover{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 0.5vh; 
+
+    p{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 200;
+        font-size: 1vh;
+        line-height: 12px;
+        color: #808486;
+    }
+    
+}
+
+.btnSendMailContainer{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: flex-end;
+    margin-top: 2vh;
+}
+.btnSendMail{
+    background: #e45454;
+    border-radius: 8px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 5vh;
+    box-shadow: 0px 12px 8px -8px rgba(0, 0, 0, 0.25);
+    p{
+        font-family: 'Noto';
+        font-style: normal;
+        font-weight: 200;
+        font-size: 2vh;
+        line-height: 12px; 
+        color: #fff;
+       
+    }
+}

@@ -1,5 +1,5 @@
 
-<ion-content>
+<ion-content [scrollEvents]="true"  (ionScroll)="getScrollPosition($event)">
 
   <!-- hEADER  -->
   <div class="headerFilters">
@@ -8,14 +8,14 @@
       <img src="../../../../assets/icon/search.svg" alt="">
       <ion-input formControlName="searchBar" (ionFocus)="searchGotFocus()" (ionBlur)="searchLoseFocus()" type="text" placeholder="Busca en GYS">
       </ion-input>
-      <img *ngIf="isFilterSearchOn && searchForm.getRawValue().searchBar.length>0" (click)="onClickClearSerchBar()" src="../../../../assets/icon/cancel.svg" alt="">
+      <img  *ngIf="searchForm.getRawValue().searchBar.length>0" (click)="onClickClearSerchBar()" src="../../../../assets/icon/cancel.svg" alt="">
     </div>
   
     <div class="categorySlides">
       <ion-slides [scrollbar]="false" mode="ios" scrollbar="ios" [options]="slidesOptions">
         <ion-slide *ngFor="let item of [1,2,3,4,54,5,6,7,7,7,3,423,423,423,324,234]">
           <img src="../../../../assets/icon/add.svg" alt="">
-          <p>Category</p>
+          <p>Category</p> 
         </ion-slide>
       </ion-slides>
     </div>
@@ -61,6 +61,9 @@
       </div>
     </div>
 
+  </div>
+  <div *ngIf="showGoTopBtn" class="back-to-top-btn"  (click)="gotToTop()">
+    <ion-icon name="chevron-up-outline"></ion-icon>
   </div>
 
 </ion-content>

@@ -9,7 +9,13 @@ export class TabsPage implements OnInit {
 
   constructor() { }
 
+  optionSelected:string = "list";
+
   ngOnInit() {
+  }
+
+  onClickSelectedTab(option:string){
+    this.optionSelected = option;
   }
 
 }

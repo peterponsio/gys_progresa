@@ -1,3 +1,4 @@
+import { AddFormComponent } from './add-form/add-form.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +9,8 @@ import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.compo
 @NgModule({
   declarations: [
     HeaderBasicComponent,
-    SlideSugeridosComponent
+    SlideSugeridosComponent,
+    AddFormComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.compo
   ],
   exports: [
     HeaderBasicComponent,
-    SlideSugeridosComponent
+    SlideSugeridosComponent,
+    AddFormComponent
   ]
 })
 export class ComponentsModule { }

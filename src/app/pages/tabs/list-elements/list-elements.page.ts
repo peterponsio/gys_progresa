@@ -1,6 +1,7 @@
-import { NavController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { NavController, IonContent,Platform } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-elements',
@@ -9,8 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ListElementsPage implements OnInit {
 
+  @ViewChild(IonContent) content: IonContent;
+
   isFilterSearchOn:boolean=false;
   typeView:string = "list";
+
+  showGoTopBtn:boolean=false;
 
   searchForm: FormGroup = this.formBuilder.group({
     searchBar: [''],
@@ -33,7 +38,7 @@ export class ListElementsPage implements OnInit {
       },
     };
 
-  constructor(private formBuilder: FormBuilder,private nav:NavController) { }
+  constructor(private formBuilder: FormBuilder,private nav:NavController,private platform: Platform) { }
 
   ngOnInit() {
   }
@@ -41,6 +46,7 @@ export class ListElementsPage implements OnInit {
   onSearchChange(event:any){
 
   }
+
   searchGotFocus(){
     this.isFilterSearchOn=true;
   }
@@ -62,5 +68,12 @@ export class ListElementsPage implements OnInit {
     this.nav.navigateForward("element-details",{state: { details : item}});
   }
 
+  gotToTop() {
+    this.content.scrollToTop(800);
+  }
+
+  getScrollPosition(event :any){
+    event.detail.scrollTop > this.platform.height() ? this.showGoTopBtn = true : this.showGoTopBtn = false;
+  }
 
 }

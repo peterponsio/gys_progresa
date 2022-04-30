@@ -1,0 +1,54 @@
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3vh;
+    margin-right: 3vh !important;
+    padding-bottom: 1vh;
+}
+
+.backBtn{
+    height: 4vh;
+
+}
+
+.tittleCont{
+    display: flex;
+    flex-direction: column;
+   font-family: 'Noto-Sans';
+    margin-left: 5vw !important;
+}
+
+.title{
+    font-size: 2vh;
+    margin: 0;
+}
+.category{
+    font-size: 1vh;
+    margin: 0;
+    color: rgb(143, 140, 140);
+}
+
+.containerCameraAdd{
+    background-color: #d9d9d9;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+}
+
+.imgAddIcon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+        height: 3vh;
+    }
+    p{
+        font-size: 2vh;
+        font-family: 'Noto-Sans';
+    }
+}

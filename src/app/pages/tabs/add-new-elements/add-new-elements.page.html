@@ -1,4 +1,28 @@
 
 <ion-content>
 
+      <!-- hEADER  -->
+  <div class="headerFilters">
+    <form  [formGroup]="categoryForm">
+    <div [ngClass]="{filterOn: isFilterSearchOn}" class="searchBarContainer">
+      <img src="../../../../assets/icon/search.svg" alt="">
+      <ion-input formControlName="searchBar" (ionFocus)="searchGotFocus()" (ionBlur)="searchLoseFocus()" type="text" placeholder="Buscar categoria">
+      </ion-input>
+      <img *ngIf="categoryForm.getRawValue().searchBar.length>0" (click)="onClickClearSerchBar()" src="../../../../assets/icon/cancel.svg" alt="">
+    </div>
+    </form>
+</div>
+
+<div class="listCategorysContainer">
+
+    <ion-grid  fixed>
+        <ion-row *ngFor="let f of lisItems; let r = index">
+                <ion-col (click)="onClickAddNewByCat(item.text)" *ngFor="let item of lisItems[r]" size="4">
+                    <img src="../../../../assets/icon/account.svg" alt="">
+                    <p>Cat</p>
+                </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>
+   
 </ion-content>
