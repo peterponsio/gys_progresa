@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderBasicComponent } from './header-basic/header-basic.component';
 import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.compo
   imports: [
     CommonModule,
     IonicModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderBasicComponent,

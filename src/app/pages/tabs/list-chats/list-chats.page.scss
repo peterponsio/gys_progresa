@@ -1,0 +1,68 @@
+.chatsContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 0;
+    padding-left: 3vw;
+    padding-right: 3vw;
+
+    justify-content: space-between;
+    img{
+        height: 2vh;
+    }
+    border-bottom: 0.5px solid rgb(167, 167, 167,0.3);
+    p{
+        font-family: 'Noto-Sans';
+        font-size: 2.2vh;
+    }
+}
+
+.listChatsContainer{
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
+}
+.chatSesionContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    justify-content: space-between;
+    img{
+        height: 8vh;
+        width: 12vh;
+    }
+    //border-bottom: 0.5px solid rgb(167, 167, 167,0.3);
+    padding-bottom: 1vh;
+    margin-top: 1vh;
+}
+.infoSesion{
+    display: flex;
+    flex-direction: column;
+   align-items: flex-start;
+   justify-content: flex-start;
+   width: 90%;
+    p{
+        text-align: start;
+        padding: 0;
+        margin: 0;
+        font-size: 2vh;
+        font-family: 'Noto-Normal';
+    }
+}
+
+.handPointing{
+    height: 2.5vh !important;
+    display: flex;
+    width: 10%;
+    justify-content: flex-end;
+    img{
+        height: 2.5vh !important;
+    }
+}

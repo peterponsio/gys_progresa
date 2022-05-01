@@ -9,18 +9,16 @@ p{
 }
 
 ion-tab-button{
-    --background-focused: rgb(226, 128, 128, 0.5);
+    --background-focused: rgb(226, 128, 128, 1);
     --color: #292626;
     --color-selected:rgb(226, 128, 128, 1)
 }
 
 ion-tab-bar{
-    --background: #fff;
-    --border:0.5px solid rgb(238, 235, 235,0.5);
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 7%;
+    --background: rgba(255,255,255,0.9);
     border-radius: 16px 16px 0px 0px;
-}
-ion-tabs{
-    --background: #fff;
-    border-radius: 16px 16px 0px 0px;
-    background-color: #fff;
 }

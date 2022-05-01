@@ -31,4 +31,8 @@ export class AddFormComponent implements OnInit {
     this.modalController.dismiss(this.formAddNew.getRawValue());
   } 
 
+  createNewOfert(){
+    this.modalController.dismiss(this.formAddNew.getRawValue());
+  }
+
 }

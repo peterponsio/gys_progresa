@@ -1,3 +1,33 @@
 <ion-content>
 
+    <div class="chatsContainer">
+        <p>Mis Mensajes</p>
+        <img src="../../../../assets/icon/imgInsideIcons/dots.svg" alt="">
+    </div>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of [1,2]">
+            <ion-item style="--padding-end: 20px">
+                <div class="chatSesionContainer" >
+                    <img src="../../../../assets/icon/add.svg" alt="">
+                    <div class="infoSesion">
+                        <p> Alberto</p>
+                        <p> Magos Sevilla</p>
+                        <p style="font-size: 1vh;">ultimo mensaje 20/03/2022</p>
+                    </div>
+                    <div class="handPointing">
+                        <img  src="../../../../assets/icon/hand-pointing.svg" alt="">
+                    </div>
+                 
+                </div>
+            </ion-item>
+            <ion-item-options side="end">
+                
+                <ion-item-option color="danger"> <ion-icon slot="top" name="trash"></ion-icon>
+                    Eliminar
+                </ion-item-option>
+                <ion-item-option >Reportar Usuario</ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
 </ion-content>

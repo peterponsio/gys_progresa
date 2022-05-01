@@ -1,6 +1,6 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom,top">
-    <ion-tab-button (click)="onClickSelectedTab('list')" tab="list-elements">
+  <ion-tab-bar class="tab-bar" translucent="true" mode="ios" slot="bottom,top">
+    <ion-tab-button  (click)="onClickSelectedTab('list')" tab="list-elements">
        <img *ngIf="optionSelected=='list'"  src="../../../assets/icon/list_red.svg" alt="">
         <img *ngIf="optionSelected!='list'"  src="../../../assets/icon/list.svg" alt="">
     </ion-tab-button>

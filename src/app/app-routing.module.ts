@@ -30,6 +30,18 @@ const routes: Routes = [
     path: 'element-details',
     loadChildren: () => import('./pages/element-details/element-details.module').then( m => m.ElementDetailsPageModule)
   },
+  {
+    path: 'ajustes',
+    loadChildren: () => import('./pages/ajustes/ajustes.module').then( m => m.AjustesPageModule)
+  },
+  {
+    path: 'mis-anuncios',
+    loadChildren: () => import('./pages/mis-anuncios/mis-anuncios.module').then( m => m.MisAnunciosPageModule)
+  },
+  {
+    path: 'mis-favoritos',
+    loadChildren: () => import('./pages/mis-favoritos/mis-favoritos.module').then( m => m.MisFavoritosPageModule)
+  },
 
 
 ];

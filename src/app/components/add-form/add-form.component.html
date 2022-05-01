@@ -16,4 +16,26 @@
     </div>
   </div>
 
+  <form [formGroup]="formAddNew" (ngSubmit)="createNewOfert()">
+    <div class="formFieldContainer">
+      <div class="fieldsContainer">
+        <ion-input type="text" placeholder="Título"></ion-input>
+      </div >
+      <div  class="fieldsContainer fieldTextArea">
+        <ion-textarea placeholder="Descripción"></ion-textarea>
+      </div>
+      <div  class="fieldsContainer">
+        <ion-input type="number" placeholder="Precio"></ion-input>
+      </div>
+      <div  class="fieldsContainer">
+        <ion-input type="text" placeholder="Ubicación"></ion-input>
+      </div>
+    </div>
+
+    <div (submit)="createNewOfert()" class="btnAddContainer">
+      <div class="addBtn">
+        <p>Añadir</p>
+      </div>
+    </div>
+  </form>
 </ion-content>
