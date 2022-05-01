@@ -5,7 +5,7 @@
         <img src="../../../../assets/icon/imgInsideIcons/dots.svg" alt="">
     </div>
     <ion-list>
-        <ion-item-sliding *ngFor="let item of [1,2]">
+        <ion-item-sliding (click)="onClickOpemToSesion(item)" *ngFor="let item of ['hola','adios']">
             <ion-item style="--padding-end: 20px">
                 <div class="chatSesionContainer" >
                     <img src="../../../../assets/icon/add.svg" alt="">

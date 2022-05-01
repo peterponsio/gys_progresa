@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListChatsPage implements OnInit {
 
-  constructor() { }
+  constructor(private nav:NavController) { }
 
   ngOnInit() {
+  }
+
+  onClickOpemToSesion(sesion: any){
+    this.nav.navigateForward(['chat-sesion'],{animated: false,state:{sesion: sesion}})
   }
 
 }

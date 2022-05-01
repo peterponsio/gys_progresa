@@ -6,20 +6,21 @@
     <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
   </div>
 
+  <form  [formGroup]="registerForm" (ngSubmit)="createUser()">
   
   <div class="loginFieldsContainer">
     <div class="inputsContainer">
-      <ion-input type="text" placeholder="nombre"></ion-input>
+      <ion-input formControlName="name" type="text" placeholder="nombre"></ion-input>
     </div>
     <div class="inputsContainer">
-      <ion-input type="text" placeholder="email"></ion-input>
+      <ion-input formControlName="email" type="text" placeholder="email"></ion-input>
     </div>
     <div class="inputsContainer passwordField">
-      <ion-input [type]="passType" placeholder="password"></ion-input>
+      <ion-input formControlName="password1" [type]="passType" placeholder="password"></ion-input>
       <img (click)="onClickSeePass()" style="height: 3.5vh;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
     <div class="inputsContainer passwordField">
-      <ion-input [type]="passType2" placeholder="password"></ion-input>
+      <ion-input formControlName="password2" [type]="passType2" placeholder="password"></ion-input>
       <img (click)="onClickSeePass2()" style="height: 3.5vh;" src="{{seePass2 ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
   </div>
@@ -34,11 +35,13 @@
 
   
   <div class="bottomBtns">
-    <div (click)="onClickLoginMail()" class="loginBtn">
-      <ion-button expand="block" fill="clear" shape="round">
+    <div class="loginBtn">
+      <ion-button type="submit"  expand="block" fill="clear" shape="round">
         Crear cuenta
       </ion-button>
     </div>
   </div>
+
+</form>
 
 </ion-content>

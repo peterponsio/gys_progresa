@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'mis-favoritos',
     loadChildren: () => import('./pages/mis-favoritos/mis-favoritos.module').then( m => m.MisFavoritosPageModule)
   },
+  {
+    path: 'chat-sesion',
+    loadChildren: () => import('./pages/chat-sesion/chat-sesion.module').then( m => m.ChatSesionPageModule)
+  },
 
 
 ];

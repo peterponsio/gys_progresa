@@ -1,0 +1,26 @@
+<div class="headerChat">
+  <div class="subheaderChat">
+    <img (click)="onClickGoBack()" src="../../../assets/icon/back-arrow.svg" alt="">
+    <div style="display: flex;flex-direction: column; align-items: flex-start;">
+      <p style="margin: 0;padding: 0;">{{chatSesion}}</p>
+      <p style="margin: 0;padding: 0; font-size: 0.5vh; color: rgb(202, 101, 101);">{{chatSesion}}</p>
+    </div>
+  </div>
+  <img (click)="onClickChatOption()" src="../../../assets/icon/imgInsideIcons/dots.svg" alt="">
+</div>
+<ion-content>
+
+  <div>
+    
+  </div>
+
+</ion-content>
+<ion-footer style="border-top: 1px solid rgb(145, 139, 139,0.3);">
+  <div class="chatBoxField">
+    <img src="../../../assets/icon/clip.svg" alt="">
+    <div  class="inputChatField ion-text-wrap">
+      <ion-input class="ion-text-wrap" type="text" placeholder="Escribe tu mensaje"></ion-input>
+    </div>
+    <img src="../../../assets/icon/iconSend/send_outline.svg" alt="">
+  </div>
+</ion-footer>

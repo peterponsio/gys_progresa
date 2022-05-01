@@ -1,3 +1,5 @@
+import { AuthServiceService } from './../../services/auth-service.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,7 +16,14 @@ export class RegisterPage implements OnInit {
   seePass2:boolean = false;
   passType2:string = "password";
 
-  constructor(private nav:NavController) { }
+  registerForm: FormGroup = this.formBuilder.group({
+    name: [''],
+    email: [''],
+    password1: [''],
+    password2: ['']
+    });
+
+  constructor(private nav:NavController, private formBuilder:FormBuilder,private authService:AuthServiceService) { }
 
   ngOnInit() {
   }
@@ -28,8 +37,14 @@ export class RegisterPage implements OnInit {
     this.seePass2 = !this.seePass2;
   }
 
-  onClickLoginMail(){
-    this.nav.navigateForward("tabs/list-elements",{animated:false});
+
+  createUser(){
+    console.log("jola");
+    
+    this.authService.register(this.registerForm.getRawValue()).then(res=>{
+      console.log(res);
+      this.nav.navigateForward("tabs/list-elements",{animated:false});
+    })
   }
 
 }
