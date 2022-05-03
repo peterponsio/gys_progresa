@@ -1,6 +1,11 @@
 
 <ion-content>
-  <app-header-basic title=""></app-header-basic>
+  <div style="margin-top: 3%;" class="headerContainer">
+    <img (click)="onClickGoBack()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
+    <div class="tittleCont">
+      <!-- <p>{{title}}</p> -->
+    </div>
+  </div>
   
   <div class="logoIntro">
     <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
@@ -14,16 +19,16 @@
     </div>
     <div class="inputsContainer passwordField"  [ngClass]="{'ValidFieldInput': validFieldPassword,'invalidFieldInput': !validFieldPassword }">
       <ion-input (ionChange)="onChangePass()" formControlName="password" (ionFocus)="fieldsGet('password')" [type]="passType" placeholder="password"></ion-input>
-      <img (click)="onClickSeePass()" style="height: 3.5vh;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
+      <img (click)="onClickSeePass()" style="height: 25px;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
   </div>
   <div class="recoverPass">
     <p (click)="onClickRecoverPass()">¿Has olvidado tu contraseña?</p>
   </div>
-  <div class="recorderContainer">
+  <!-- <div class="recorderContainer">
     <ion-toggle></ion-toggle>
     <p>Recuerdame</p>
-  </div>
+  </div> -->
 
   
   <div class="bottomBtns">

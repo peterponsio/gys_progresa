@@ -28,6 +28,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  onClickGoBack(){
+    this.nav.navigateBack("intro");
+  }
+
   onClickRecoverPass(){
     this.nav.navigateForward("recover-pass",{animated:false});
   }

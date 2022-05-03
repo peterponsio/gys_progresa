@@ -12,7 +12,9 @@ export class HeaderBasicComponent implements OnInit {
 
   @Input() title:any;
 
-  ngOnInit() {}
+  ngOnInit() {
+  
+  }
 
   onClickGoBack(){
     this.nav.back();

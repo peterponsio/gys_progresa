@@ -15,6 +15,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
+import { GooglePlus } from '@awesome-cordova-plugins/google-plus/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +31,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFireStorageModule,
     AngularFireDatabaseModule, 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },   ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },GooglePlus],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

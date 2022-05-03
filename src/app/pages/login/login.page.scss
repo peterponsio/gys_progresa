@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     margin: 0 auto;
-    margin-top: 6vh;
+    margin-top: 16%;
     justify-content: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 80%;
@@ -13,11 +13,11 @@
     flex-direction: column;
     width: 90%;
     margin: 0 auto;
-    margin-top: 2vh;
+    margin-top: 3%;
 }
 .inputsContainer{
     border-bottom: 0.2px solid  #c7c0c0;
-    padding-top: 4vh;
+    padding-top: 10%;
 }
 .inputsContainer *{
     margin-left: 5vw;
@@ -30,10 +30,10 @@
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    padding-top: 1vh;
+    padding-top: 2%;
 }
 .recoverPass p {
-    font-size: 1.5vh;
+    font-size: 13px;
     font-family: "Noto-Sans";
 }
 .recorderContainer{
@@ -44,20 +44,20 @@
     margin-left: 5vw;
     align-items: center;
     text-align: center;
-    font-family: 'Noto-Sans';
-    font-size: 1.5vh;
-    margin-top: 2vh;
+    font-family: "Noto-Sans";
+    font-size: 14px;
+    margin-top: 5%;
 }
 ion-toggle{
     margin-right: 3vw;
     --background: rgb(221, 206, 206, 0.2);
     --background-checked: rgba(219, 58, 58, 0.5);
-    --handle-background:rgb(201, 69, 69,0.8);
+    --handle-background: rgb(201, 69, 69,0.8);
     --handle-background-checked: rgb(201, 69, 69);
-    height: 3vh;
-    width: 6vh;
-    --handle-height: 100%;
-    --handle-width: 3vh;
+    /* height: 27px; */
+    /* width: 52px; */
+    /* --handle-height: 100%; */
+    // --handle-width: 3vh; 
 }
 .passwordField{
     display: flex;
@@ -66,8 +66,8 @@ ion-toggle{
 }
 
 .bottomBtns{
-    position: fixed;
-    bottom: 3vh;
+   position: fixed;
+    bottom: 3%;
     width: 100%;
 }
 
@@ -81,7 +81,7 @@ ion-toggle{
     background-color: rgb(223, 64, 64);
     border-radius: 8px;
     width: 90%;
-    height: 7vh;
+    //height: 7vh;
     margin-top: 2vh;
 
     box-shadow: 0px 12px 8px -8px rgba(0, 0, 0, 0.25);
@@ -101,10 +101,11 @@ ion-button * {
     display: flex;
     justify-content: center;
     width: 90%;
-    margin: 0 auto;margin-top: 4vh;
+    margin: 0 auto;
+    margin-top: 5%;
     margin-left: 5vw;
-    font-family: 'Noto-Sans';
-    font-size: 2vh;
+    font-family: "Noto-Sans";
+    font-size: 15px;
 }
 .registerDontHaveAccContainer p{
     color: rgb(131, 127, 127);
@@ -114,3 +115,13 @@ ion-button * {
     color: rgb(0, 0, 0);
 }
 
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5vw;
+}
+
+.backBtn{
+    height: 30px;
+}

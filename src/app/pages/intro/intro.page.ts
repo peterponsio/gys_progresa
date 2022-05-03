@@ -1,3 +1,4 @@
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
@@ -8,7 +9,7 @@ import { NavController } from '@ionic/angular';
 })
 export class IntroPage implements OnInit {
 
-  constructor(private nav:NavController) { }
+  constructor(private nav:NavController,private authService:AuthServiceService) { }
 
   slideOpts = {
     initialSlide: 1,
@@ -23,7 +24,7 @@ export class IntroPage implements OnInit {
   }
 
   onClickLoginGoogle(){
-
+    this.authService.loginGoogle();
   }
 
   onClickLoginMail(){

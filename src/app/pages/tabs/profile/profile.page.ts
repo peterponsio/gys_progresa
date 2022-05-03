@@ -1,3 +1,5 @@
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(private nav:NavController,private authService:AuthServiceService) { }
 
   ngOnInit() {
+  }
+
+  onClickCloseSesion(){
+    this.authService.SignOut();
   }
 
 }
