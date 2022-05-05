@@ -8,9 +8,11 @@
     <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
   </div>
 
+  <form [formGroup]="recoverForm">
+  
   <div class="loginFieldsContainer">
-    <div class="inputsContainer">
-      <ion-input type="text" placeholder="email"></ion-input>
+    <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldMail,'invalidFieldInput': !validFieldMail }">
+      <ion-input (ionChange)="onChangeMail()" formControlName="mail" type="text" placeholder="email"></ion-input>
     </div>
   </div>
 
@@ -20,11 +22,9 @@
     </p>
   </div>
   <div class="btnSendMailContainer">
-    <div class="btnSendMail">
-      <p>
-        Enviar email
-      </p>
-    </div>
+    <ion-button (click)="onClickSendRecoverMail()"  class="btnSendMail" expand="block" fill="clear" shape="round">
+      <p>Enviar email</p>
+    </ion-button>
   </div>
-
+</form>
 </ion-content>

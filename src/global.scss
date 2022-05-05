@@ -50,10 +50,25 @@
     --background: rgb(0, 0, 0.);
     --padding:0;
     --backdrop-opacity: 0.98;
-    --spinner-color: red;
+    --spinner-color: rgb(238, 75, 75);
     width: 100%;
     height: 100%;
     --height:20%;
     --width:20%;
+}
+
+//Modals Visuals
+
+.basicInfoAlert{
+    --background: rgb(255, 255, 255);
+    --backdrop-opacity:0.2;
+    button{
+        color:#ffffff !important;
+        background-color: #e64f4f !important;
+    }
+    .btnCancelAlertLogout{
+        color:#e64f4f !important;
+        background-color: #ffffff !important;
+    }
 }
 

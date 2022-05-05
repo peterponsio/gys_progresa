@@ -2,6 +2,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { VisualsService } from 'src/app/services/visuals.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginPage implements OnInit {
   seePass:boolean = false;
   passType:string = "password";
 
-  constructor(private nav:NavController,private formBuilder: FormBuilder,private authService:AuthServiceService) { }
+  constructor(private nav:NavController,private formBuilder: FormBuilder,private authService:AuthServiceService,private alertService:VisualsService) { }
 
   loginForm: FormGroup = this.formBuilder.group(
     {
@@ -45,8 +46,6 @@ export class LoginPage implements OnInit {
     
     if(option == "email"){
       this.loginForm.controls.mail.valid ? this.validFieldMail = true : this.validFieldMail = false;
-      console.log(option);
-
     }else{
       this.loginForm.controls.password.valid ? this.validFieldPassword = true : this.validFieldPassword = false;
     }
@@ -64,12 +63,14 @@ export class LoginPage implements OnInit {
     if(this.loginForm.valid){
       this.authService.login(this.loginForm.getRawValue()).then(res=>{
         console.log(res);
-        this.nav.navigateForward("tabs/list-elements",{animated:false});
+      }).catch(err=>{
+        console.log(err)
+        this.alertService.alertInfoBasic("Datos Erroneos")
       })
     }else{
-      this.validFieldMail=false;
-      this.validFieldPassword=false;
+      this.alertService.alertInfoBasic("Datos Erroneos")
     }
+
   }
 
   onClickGoRegister(){

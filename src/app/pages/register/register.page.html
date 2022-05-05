@@ -9,18 +9,19 @@
   <form  [formGroup]="registerForm" (ngSubmit)="createUser()">
   
   <div class="loginFieldsContainer">
-    <div class="inputsContainer">
-      <ion-input formControlName="name" type="text" placeholder="nombre"></ion-input>
+    <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldName,'invalidFieldInput': !validFieldName }">
+      <ion-input (ionChange)="onChangeName()" (ionFocus)="fieldsGet('name')" formControlName="name" type="text" placeholder="nombre"></ion-input>
     </div>
-    <div class="inputsContainer">
-      <ion-input formControlName="email" type="text" placeholder="email"></ion-input>
+    <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldMail,'invalidFieldInput': !validFieldMail }">
+      <ion-input (ionChange)="onChangeMail()" (ionFocus)="fieldsGet('email')" formControlName="email" type="text" placeholder="email"></ion-input>
     </div>
-    <div class="inputsContainer passwordField">
-      <ion-input formControlName="password1" [type]="passType" placeholder="password"></ion-input>
+    <div class="inputsContainer passwordField" [ngClass]="{'ValidFieldInput': validFieldPassword,'invalidFieldInput': !validFieldPassword }">
+      <ion-input (ionChange)="onChangePass()" (ionFocus)="fieldsGet('password')" formControlName="password1" [type]="passType" placeholder="password"></ion-input>
       <img (click)="onClickSeePass()" style="height: 25px;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
-    <div class="inputsContainer passwordField">
-      <ion-input formControlName="password2" [type]="passType2" placeholder="password"></ion-input>
+
+    <div class="inputsContainer passwordField" [ngClass]="{'ValidFieldInput': validFieldPassword2,'invalidFieldInput': !validFieldPassword2 }">
+      <ion-input (ionChange)="onChangePass2()" (ionFocus)="fieldsGet('password2')" formControlName="password2" [type]="passType2" placeholder="password"></ion-input>
       <img (click)="onClickSeePass2()" style="height: 25px;" src="{{seePass2 ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
   </div>
@@ -29,7 +30,7 @@
       <p>Acepto las <u>condiciones de uso</u>  y la <u>política de privacidad</u> </p>
     </div>
     <div class="toggleRegister">
-      <ion-toggle></ion-toggle>
+      <ion-toggle formControlName="terms"></ion-toggle>
     </div>
   </div>
 

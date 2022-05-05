@@ -1,6 +1,7 @@
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { VisualsService } from 'src/app/services/visuals.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private nav:NavController,private authService:AuthServiceService) { }
+  constructor(private nav:NavController,private visualService:VisualsService) { }
 
   ngOnInit() {
   }
 
   onClickCloseSesion(){
-    this.authService.SignOut();
+    this.visualService.alertLogout()
   }
 
 }

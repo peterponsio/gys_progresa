@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'app.getService.gys',
   appName: 'gys',
   webDir: 'www',
   bundledWebRuntime: false,

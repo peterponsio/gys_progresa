@@ -51,19 +51,20 @@
     margin-top: 3%;
 }
 .btnSendMail{
-    background: #e45454;
+    background: #e45454 !important;
     border-radius: 8px;
-    width: 40%;
+    width: 46%;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
-    box-shadow: 0px 12px 8px -8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 12px 8px -8px rgb(0 0 0 / 25%);
+    --background: #e45454;
     p{
         font-family: "Noto";
         font-style: normal;
         font-weight: 200;
-        font-size: 17px;
+        font-size: 12iopx;
         line-height: 12px;
         color: #fff;
     }
