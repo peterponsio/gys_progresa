@@ -1,0 +1,29 @@
+
+<ion-content>
+  <app-header-basic title=""></app-header-basic>
+
+  <div class="logoIntro">
+    <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
+  </div>
+
+  <form [formGroup]="loginForm"  >
+
+    <div class="loginFieldsContainer">
+      <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldPhone,'invalidFieldInput': !validFieldPhone }">
+        <ion-input (ionChange)="onChangePhone()" formControlName="phone" (ionFocus)="fieldsGet('phone')" type="tel" placeholder="Nº de telefono"></ion-input>
+      </div>
+    </div>
+
+    <div id="captchaContainer" style="display: none;"></div>
+      
+    <div class="bottomBtns">
+      <div  class="loginBtn">
+        <ion-button expand="block" fill="clear" shape="round">
+          Siguiente
+        </ion-button>
+      </div>
+    </div>
+  </form>
+   
+
+</ion-content>

@@ -26,7 +26,8 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  },  {
+  },
+  {
     path: 'element-details',
     loadChildren: () => import('./pages/element-details/element-details.module').then( m => m.ElementDetailsPageModule)
   },
@@ -45,7 +46,11 @@ const routes: Routes = [
   {
     path: 'chat-sesion',
     loadChildren: () => import('./pages/chat-sesion/chat-sesion.module').then( m => m.ChatSesionPageModule)
+  },  {
+    path: 'phone-login',
+    loadChildren: () => import('./phone-login/phone-login.module').then( m => m.PhoneLoginPageModule)
   },
+
 
 
 ];

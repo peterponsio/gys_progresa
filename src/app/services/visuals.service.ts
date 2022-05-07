@@ -25,18 +25,33 @@ export class VisualsService {
       buttons: ['Aceptar'],
       cssClass: 'basicInfoAlert',
       backdropDismiss: true,
-      keyboardClose:true
+      keyboardClose:true,
+      mode: "ios"
     });
   
     await alert.present();
       setTimeout(() => {
          this.alertController.dismiss()
-      }, 1500);
+      }, 2200);
+  }
+
+  async alertInfoRecover(msg:string) {
+    const alert = await this.alertController.create({
+      message:  msg,
+      buttons: ['Aceptar'],
+      cssClass: 'basicInfoAlert',
+      backdropDismiss: true,
+      keyboardClose:true,
+      mode: "ios"
+    });
+  
+    await alert.present();
   }
 
   async alertLogout() {
     const alert = await this.alertController.create({
       message:  "Seguro que quieres cerrar sesión?",
+      mode: "ios",
       buttons: [
         {
           role : "Cancel",

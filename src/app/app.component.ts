@@ -1,7 +1,7 @@
 import { LoadingController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Component, NgZone } from '@angular/core';
-import * as auth from 'firebase/auth';
+
 
 
 @Component({
@@ -11,31 +11,33 @@ import * as auth from 'firebase/auth';
 })
 export class AppComponent {
   constructor(private authAccess: AngularFireAuth,private navC:NavController,private loadingController:LoadingController,private ngZ:NgZone) {
-    let userData;
-    ngZ.run(()=>{
+    this.loadingB();
       this.authAccess.authState.subscribe(user=>{
         if (user) {
           console.log(user);
-          this.loadingStartApp().then(()=>{
             navC.navigateForward("tabs/list-elements",{animated:false}).then(()=>{
-              //loadingController.dismiss();
+              loadingController.dismiss();
              });
-          });
-        }  
+        }else {
+          loadingController.dismiss();
+        } 
       })  
-    })
-
-  }
-
-  getIsUserLogged(){
-
   }
 
   async loadingStartApp() {
     const loading = await this.loadingController.create({
       spinner: 'bubbles',
       cssClass: "loader",
-      duration: 2000
+      duration: 2200
+    });
+    await loading.present();
+  }
+
+  async loadingB(){
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles',
+      cssClass: "loader",
+      //duration: 2200
     });
     await loading.present();
   }

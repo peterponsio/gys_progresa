@@ -23,8 +23,8 @@ export class IntroPage implements OnInit {
     this.nav.navigateForward("tabs",{animated:false});
   }
 
-  onClickLoginGoogle(){
-    this.authService.loginGoogle();
+  onClickLoginPhone(){
+    this.nav.navigateForward("phone-login",{animated:false});
   }
 
   onClickLoginMail(){

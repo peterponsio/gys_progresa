@@ -39,6 +39,8 @@ export class RecoverPassPage implements OnInit {
         this.alertService.alertInfoBasic("El correo es incorrecto o no existe")
         console.log(err);
       });
+    }else{
+      this.alertService.alertInfoBasic("El correo es incorrecto o no existe")
     }
   }
 

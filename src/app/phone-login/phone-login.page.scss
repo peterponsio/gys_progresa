@@ -1,0 +1,127 @@
+.logoIntro{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 16%;
+    justify-content: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 80%;
+}
+
+.loginFieldsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+.inputsContainer{
+    border-bottom: 0.2px solid  #c7c0c0;
+    padding-top: 10%;
+}
+.inputsContainer *{
+    margin-left: 5vw;
+    margin-right: 3vw;
+}
+.recoverPass{
+    display: flex;
+    width: 100%;
+    padding-right: 5vw;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    padding-top: 2%;
+}
+.recoverPass p {
+    font-size: 13px;
+    font-family: "Noto-Sans";
+}
+.recorderContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 5vw;
+    align-items: center;
+    text-align: center;
+    font-family: "Noto-Sans";
+    font-size: 14px;
+    margin-top: 5%;
+}
+ion-toggle{
+    margin-right: 3vw;
+    --background: rgb(221, 206, 206, 0.2);
+    --background-checked: rgba(219, 58, 58, 0.5);
+    --handle-background: rgb(201, 69, 69,0.8);
+    --handle-background-checked: rgb(201, 69, 69);
+    /* height: 27px; */
+    /* width: 52px; */
+    /* --handle-height: 100%; */
+    // --handle-width: 3vh; 
+}
+.passwordField{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bottomBtns{
+   position: fixed;
+    bottom: 3%;
+    width: 100%;
+}
+
+.loginBtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid rgb(223, 64, 64);
+    background-color: rgb(223, 64, 64);
+    border-radius: 8px;
+    width: 90%;
+    //height: 7vh;
+    margin-top: 2vh;
+
+    box-shadow: 0px 12px 8px -8px rgba(0, 0, 0, 0.25);
+}
+.loginBtn * {
+    --color: #ffffff;
+    font-family: 'Noto-Sans';
+    font-weight: 900;
+}
+ion-button{
+    width: 100%;
+}
+ion-button * {
+    padding: 1vh;
+}
+.registerDontHaveAccContainer{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-left: 5vw;
+    font-family: "Noto-Sans";
+    font-size: 15px;
+}
+.registerDontHaveAccContainer p{
+    color: rgb(131, 127, 127);
+}
+.registerDontHaveAccContainer b{
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5vw;
+}
+
+.backBtn{
+    height: 30px;
+}
