@@ -61,8 +61,10 @@ export class LoginPage implements OnInit {
 
   onClickLoginMail(){
     if(this.loginForm.valid){
+      this.alertService.loadingStartApp();
       this.authService.login(this.loginForm.getRawValue()).then(res=>{
         console.log(res);
+        this.alertService.dissMissLoaders();
       }).catch(err=>{
         console.log(err)
         this.alertService.alertInfoBasic("Datos Erroneos")
@@ -70,7 +72,6 @@ export class LoginPage implements OnInit {
     }else{
       this.alertService.alertInfoBasic("Datos Erroneos")
     }
-
   }
 
   onClickGoRegister(){

@@ -1,9 +1,13 @@
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { AlertController, ModalController, NavController, LoadingController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 
 //Firebase imports
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+//lottie
+
+import Lottie from 'lottie-web';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +18,8 @@ export class VisualsService {
     private alertController: AlertController,
     private modalController: ModalController,
     private authAccess:AngularFireAuth,
-    private nav:NavController
+    private nav:NavController,
+    private loadingController:LoadingController
     ) 
     { }
 
@@ -76,4 +81,47 @@ export class VisualsService {
 
     alert.present()
   }
+
+   alertDontSave(): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      const alert =  await this.alertController.create({
+        message: "Quieres salir sin guardar datos?",
+        mode: "ios",
+        buttons: [
+          {
+            role: "Cancel",
+            text: "Cancelar",
+            cssClass: "btnCancelAlertLogout",
+            handler: () => {
+              reject(false);
+            }
+          },
+          {
+            role: "OK",
+            text: "Salir",
+            handler: () => {
+              resolve(true);
+            }
+          }
+        ],
+        cssClass: 'basicInfoAlert',
+        backdropDismiss: true,
+        keyboardClose: true
+      });
+      alert.present();
+    });
+  }
+
+  async loadingStartApp() {
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles',
+      cssClass: "loader",
+    });
+    await loading.present();
+  }
+
+  dissMissLoaders(){
+    this.loadingController.dismiss();
+  }
+
 }

@@ -79,9 +79,10 @@ export class RegisterPage implements OnInit {
     if(this.registerForm.valid){
       if(this.registerForm.getRawValue().terms == true){
         if(this.registerForm.getRawValue().password1 == this.registerForm.getRawValue().password2){
+          this.alertService.loadingStartApp();
           this.authService.register(this.registerForm.getRawValue()).then(res=>{
-            console.log(res);
             this.nav.navigateForward("tabs/list-elements",{animated:false});
+            this.alertService.dissMissLoaders();
           }).catch(err=>{
             console.log(err)
             this.alertService.alertInfoBasic("Datos Erroneos")

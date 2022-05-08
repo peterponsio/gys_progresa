@@ -6,23 +6,37 @@
     <form  [formGroup]="searchForm">
     <div [ngClass]="{filterOn: isFilterSearchOn}" class="searchBarContainer">
       <img src="../../../../assets/icon/search.svg" alt="">
-      <ion-input formControlName="searchBar" (ionFocus)="searchGotFocus()" (ionBlur)="searchLoseFocus()" type="text" placeholder="Busca en GYS">
+      <ion-input formControlName="searchBar" (ionChange)="onSearchChange()" (ionFocus)="searchGotFocus()" (ionBlur)="searchLoseFocus()" type="text" placeholder="Busca en GYS">
       </ion-input>
       <img  *ngIf="searchForm.getRawValue().searchBar.length>0" (click)="onClickClearSerchBar()" src="../../../../assets/icon/cancel.svg" alt="">
     </div>
   
-    <div class="categorySlides">
-      <ion-slides [scrollbar]="false" mode="ios" scrollbar="ios" [options]="slidesOptions">
-        <ion-slide *ngFor="let item of [1,2,3,4,54,5,6,7,7,7,3,423,423,423,324,234]">
-          <img src="../../../../assets/icon/add.svg" alt="">
-          <p>Category</p> 
+    <div class="categorySlides" *ngIf="listCategory.length > 0 else noCategory" >
+      <ion-slides  [scrollbar]="false" mode="ios" scrollbar="ios" [options]="slidesOptions">
+        <ion-slide *ngFor="let category of listCategory">
+          <div *ngIf="!category.img"  class="skeletonImgCategory">
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </div>
+          <img *ngIf="category.img"  src="{{category.img}}" alt="">
+          <p>{{category.title}}</p> 
         </ion-slide>
       </ion-slides>
     </div>
+
+    <ng-template class="categorySlides" #noCategory>
+      <ion-slides [scrollbar]="false" mode="ios" scrollbar="ios" [options]="slidesOptions">
+        <ion-slide *ngFor="let item of [1,2,3,4,54,5,6,7,7,7,3]">
+          <div class="skeletonImgCategory">
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </div>
+          <p class="skeletonTextCategory"><ion-skeleton-text animated style="width: 100% !important"></ion-skeleton-text></p> 
+        </ion-slide>
+      </ion-slides>
+    </ng-template>
+
+    
   </form>
   </div>
-
-  <!--  -->
 
   <div class="filterViewContainer">
     <div class="categoryText">
@@ -36,7 +50,8 @@
 
   <div class="elementsContainer">
 
-    <div (click)="onClickSeeElementDetails(item)" class="elemntContainer" *ngFor="let item of [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]">
+    <div *ngIf="listOferts.length > 0 else noOferts">
+    <div   (click)="onClickSeeElementDetails(item)" class="elemntContainer" *ngFor="let item of listOferts | filterSearch : filterText">
       <div class="imgElement">
         <img src="https://placeholder.pics/svg/1200" alt="">
       </div>
@@ -60,8 +75,39 @@
         </div>
       </div>
     </div>
+  </div>
+
+    <ng-template style="margin-bottom: 10%;" #noOferts>
+      <div class="skeletonItem" *ngFor="let item of [1,2,3,4,54,5,6,7,7,7,3]">
+     
+        <div class="leftimg">
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+
+        <div style="height: 100%;width: 65%;margin-left: 3vw;">
+       
+          <p> <ion-skeleton-text animated ></ion-skeleton-text></p>
+      
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        
+      </div>
+    </div>
+    </ng-template>
 
   </div>
+  
   <div *ngIf="showGoTopBtn" class="back-to-top-btn"  (click)="gotToTop()">
     <ion-icon name="chevron-up-outline"></ion-icon>
   </div>

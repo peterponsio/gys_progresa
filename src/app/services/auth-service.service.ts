@@ -1,4 +1,4 @@
-import { WindowService } from './window.service';
+
 import { NavController, Platform } from '@ionic/angular';
 import { Injectable, NgZone } from '@angular/core';
 
@@ -11,6 +11,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { VisualsService } from './visuals.service';
+import { Users } from '../interfaces/models';
 
 
 
@@ -23,7 +24,7 @@ export class AuthServiceService {
   windowRef: any;
   recaptchaVerifier:any
   
-  constructor(private firestore: AngularFirestore,private authAccess: AngularFireAuth,private nav:NavController,private ngZone:NgZone,private platform:Platform,private alertService:VisualsService,private win: WindowService) {
+  constructor(private firestore: AngularFirestore,private authAccess: AngularFireAuth,private nav:NavController,private alertService:VisualsService) {
     this.getUserState();
    }
 
@@ -42,8 +43,10 @@ export class AuthServiceService {
   }
 
   register(data: any) {
+    console.log(data);
+    
    return this.authAccess.createUserWithEmailAndPassword(data.email,data.password1).then(res=>{
-    this.SetUserDataDB(res.user);
+    this.SetUserDataDB(res.user,data);
    }).catch(err=>{
      console.log(err)
      this.alertService.alertInfoBasic("Datos Erroneos")
@@ -76,16 +79,18 @@ export class AuthServiceService {
       });
   }
 
-  SetUserDataDB(data:any) {
+  SetUserDataDB(user:any,data:Users) {
+    console.log("users uid", user);
+    console.log("data", data);
+    
+    
     const userRef: AngularFirestoreDocument<any> = this.firestore.doc(
-      `users/${data.uid}`
+      `Users/${user.uid}`
     );
     const userData={
-      uid: data.uid,
-      email: data.email,
-      displayName: data.displayName,
-      photoURL: data.photoURL,
-      //emailVerified: user.emailVerified,
+      id: user.uid,
+      mail: user.email,
+      name: data.name,
     };
     return userRef.set(userData, {
       merge: true,

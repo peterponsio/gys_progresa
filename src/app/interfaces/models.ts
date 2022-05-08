@@ -15,7 +15,13 @@ export interface Ofertas{
     views:number,
     created_at:any,
     reports:number,
-    created_by:string
+    created_by:Users,
+}
+
+export interface Category{
+    id:string; 
+    title:string;
+    img: string;
 }
 
 export interface SesionChat{
