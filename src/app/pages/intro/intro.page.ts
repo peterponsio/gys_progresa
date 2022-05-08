@@ -2,6 +2,8 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
+import Lottie from 'lottie-web';
+
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
@@ -19,6 +21,14 @@ export class IntroPage implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+      var svganimationIntro = document.getElementById('svgContainerIntro');
+      var animItemVerticalLine = Lottie.loadAnimation({
+        path: "../../../assets/animations/dancer.json",
+        container: svganimationIntro
+      });
+  }
+  
   onClickGoLIst(){
     this.nav.navigateForward("tabs",{animated:false});
   }

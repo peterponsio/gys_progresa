@@ -10,8 +10,9 @@ import { Component, NgZone } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
   constructor(private authAccess: AngularFireAuth,private navC:NavController,private loadingController:LoadingController,private ngZ:NgZone) {
-    this.loadingB();
+    this.loadingStartApp();
       this.authAccess.authState.subscribe(user=>{
         if (user) {
           console.log(user);
@@ -28,16 +29,6 @@ export class AppComponent {
     const loading = await this.loadingController.create({
       spinner: 'bubbles',
       cssClass: "loader",
-      duration: 2200
-    });
-    await loading.present();
-  }
-
-  async loadingB(){
-    const loading = await this.loadingController.create({
-      spinner: 'bubbles',
-      cssClass: "loader",
-      //duration: 2200
     });
     await loading.present();
   }

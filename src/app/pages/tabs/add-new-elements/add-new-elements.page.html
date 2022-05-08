@@ -17,9 +17,9 @@
 
     <ion-grid  fixed>
         <ion-row *ngFor="let f of lisItems; let r = index">
-                <ion-col (click)="onClickAddNewByCat(item.text)" *ngFor="let item of lisItems[r]" size="4">
-                    <img src="../../../../assets/icon/account.svg" alt="">
-                    <p>Cat</p>
+                <ion-col (click)="onClickAddNewByCat(item)" *ngFor="let item of lisItems[r]" size="4">
+                    <img src="{{item.img}}}" alt="">
+                    <p>{{item.title}}</p>
                 </ion-col>
         </ion-row>
     </ion-grid>

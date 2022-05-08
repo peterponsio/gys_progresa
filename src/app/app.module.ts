@@ -19,6 +19,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 //plugins
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { FilterSearchPipe } from './pipes/filter-search.pipe';
 
 //Translate 
 
@@ -43,6 +45,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AngularFireStorageModule,
     AngularFireDatabaseModule, 
     HttpClientModule, 
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

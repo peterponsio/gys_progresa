@@ -1,6 +1,8 @@
+import { DataService } from './../../../services/data.service';
 import { NavController, IonContent,Platform } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Category, Ofertas } from 'src/app/interfaces/models';
 
 
 @Component({
@@ -16,6 +18,8 @@ export class ListElementsPage implements OnInit {
   typeView:string = "list";
 
   showGoTopBtn:boolean=false;
+
+  filterText:any;
 
   searchForm: FormGroup = this.formBuilder.group({
     searchBar: [''],
@@ -38,13 +42,24 @@ export class ListElementsPage implements OnInit {
       },
     };
 
-  constructor(private formBuilder: FormBuilder,private nav:NavController,private platform: Platform) { }
+    listCategory: Category[] = [];
+    listOferts: Ofertas[] = [];
+
+  constructor(private formBuilder: FormBuilder,private nav:NavController,private platform: Platform,private data:DataService) { }
 
   ngOnInit() {
+    this.data.listCategory.subscribe(res=>{
+      this.listCategory = res;
+    })
+    this.data.listOferts.subscribe(res=>{
+     // this.listOfertsOriginal = res;
+      this.listOferts =res;
+    })
+    
   }
 
-  onSearchChange(event:any){
-
+  onSearchChange(){
+    this.filterText = this.searchForm.getRawValue().searchBar
   }
 
   searchGotFocus(){

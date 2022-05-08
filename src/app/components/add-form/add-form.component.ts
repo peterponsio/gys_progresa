@@ -1,6 +1,8 @@
+import { VisualsService } from './../../services/visuals.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
+import { Ofertas } from 'src/app/interfaces/models';
 
 @Component({
   selector: 'app-add-form',
@@ -11,9 +13,9 @@ export class AddFormComponent implements OnInit {
 
 
   @Input() title;
-  @Input() category;
+  @Input() category : Ofertas;
 
-  constructor(private modalController: ModalController, private formBuilder: FormBuilder) { }
+  constructor(private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService) { }
 
   formAddNew: FormGroup = this.formBuilder.group(
     {
@@ -23,12 +25,25 @@ export class AddFormComponent implements OnInit {
       location: [''],
       listPhotos: [''],
     }
+
+    // id:string,
+    // title:string,
+    // category:string,
+    // listImg: [],
+    // location:any,
+    // description:string,
+    // views:number,
+    // created_at:any,
+    // reports:number,
+    // created_by:Users,
   )
 
   ngOnInit() {}
 
   onClickGoBackModal(){
-    this.modalController.dismiss(this.formAddNew.getRawValue());
+    this.visuals.alertDontSave().then(res=>{
+      this.modalController.dismiss(this.formAddNew.getRawValue());
+    })
   } 
 
   createNewOfert(){
