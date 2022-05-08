@@ -1,8 +1,9 @@
 import { AuthServiceService } from './../../services/auth-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { VisualsService } from 'src/app/services/visuals.service';
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 
 @Component({
   selector: 'app-register',
@@ -30,9 +31,22 @@ export class RegisterPage implements OnInit {
     validFieldPassword:any;
     validFieldPassword2:any;
 
-  constructor(private nav:NavController, private formBuilder:FormBuilder,private authService:AuthServiceService,private alertService:VisualsService) { }
+    showBtn:boolean = true
+
+  constructor(private nav:NavController, private formBuilder:FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyb:Keyboard,private zg: NgZone) { }
 
   ngOnInit() {
+    this.keyb.onKeyboardWillShow().subscribe((res)=>{
+      this.zg.run(() => {
+        this.showBtn=false;
+      });
+    });
+    this.keyb.onKeyboardWillHide().subscribe((res)=>{
+  
+      this.zg.run(() => {
+        this.showBtn=true;
+      });
+    })
   }
 
   onClickSeePass(){

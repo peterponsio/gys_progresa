@@ -120,6 +120,18 @@ export class VisualsService {
     await loading.present();
   }
 
+  async loadingStartAppWithoutAcc() {
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles',
+      cssClass: "loader",
+    });
+    await loading.present();
+
+    setTimeout(() => {
+      this.loadingController.dismiss()
+    }, 2000);
+  }
+
   dissMissLoaders(){
     this.loadingController.dismiss();
   }

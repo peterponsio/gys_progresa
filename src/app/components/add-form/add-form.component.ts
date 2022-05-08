@@ -1,8 +1,9 @@
 import { VisualsService } from './../../services/visuals.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, NgZone } from '@angular/core';
 import { Ofertas } from 'src/app/interfaces/models';
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 
 @Component({
   selector: 'app-add-form',
@@ -14,8 +15,9 @@ export class AddFormComponent implements OnInit {
 
   @Input() title;
   @Input() category : Ofertas;
+  showBtn: boolean = true;
 
-  constructor(private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService) { }
+  constructor(private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService,private keyb:Keyboard,private zg: NgZone) { }
 
   formAddNew: FormGroup = this.formBuilder.group(
     {
@@ -23,7 +25,7 @@ export class AddFormComponent implements OnInit {
       descripcion: [''],
       precio: [''],
       location: [''],
-      listPhotos: [''],
+      listPhotos: [],
     }
 
     // id:string,
@@ -38,7 +40,19 @@ export class AddFormComponent implements OnInit {
     // created_by:Users,
   )
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.keyb.onKeyboardWillShow().subscribe((res)=>{
+      this.zg.run(() => {
+        this.showBtn=false;
+      });
+    });
+    this.keyb.onKeyboardWillHide().subscribe((res)=>{
+  
+      this.zg.run(() => {
+        this.showBtn=true;
+      });
+    })
+  }
 
   onClickGoBackModal(){
     this.visuals.alertDontSave().then(res=>{
@@ -47,7 +61,7 @@ export class AddFormComponent implements OnInit {
   } 
 
   createNewOfert(){
-    this.modalController.dismiss(this.formAddNew.getRawValue());
+    //this.modalController.dismiss(this.formAddNew.getRawValue());
   }
 
 }
