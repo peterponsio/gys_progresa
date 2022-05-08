@@ -31,7 +31,7 @@
   </div> -->
 
   
-  <div class="bottomBtns">
+  <div class="bottomBtns" *ngIf="showBtn" >
     <div (click)="onClickLoginMail()" class="loginBtn">
       <ion-button expand="block" fill="clear" shape="round">
         Iniciar sesión

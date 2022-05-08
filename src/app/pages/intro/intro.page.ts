@@ -1,3 +1,4 @@
+import { VisualsService } from 'src/app/services/visuals.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
@@ -11,10 +12,10 @@ import Lottie from 'lottie-web';
 })
 export class IntroPage implements OnInit {
 
-  constructor(private nav:NavController,private authService:AuthServiceService) { }
+  constructor(private nav:NavController,private authService:AuthServiceService,private visual:VisualsService) { }
 
   slideOpts = {
-    initialSlide: 1,
+    initialSlide: 0,
     speed: 400
   };
 
@@ -30,6 +31,7 @@ export class IntroPage implements OnInit {
   }
   
   onClickGoLIst(){
+      this.visual.loadingStartAppWithoutAcc()
     this.nav.navigateForward("tabs",{animated:false});
   }
 

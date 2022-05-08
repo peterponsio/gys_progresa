@@ -15,7 +15,7 @@
 
 <div class="listCategorysContainer">
 
-    <ion-grid  fixed>
+    <ion-grid  fixed *ngIf="lisItems.length > 0 else noCategory" >
         <ion-row *ngFor="let f of lisItems; let r = index">
                 <ion-col (click)="onClickAddNewByCat(item)" *ngFor="let item of lisItems[r]" size="4">
                     <img src="{{item.img}}}" alt="">
@@ -23,6 +23,19 @@
                 </ion-col>
         </ion-row>
     </ion-grid>
+
+    <ng-template #noCategory>
+        <ion-grid  fixed>
+            <ion-row style="margin-top: 5%" *ngFor="let f of [3]; let r = index">
+                    <ion-col  style="margin-top: 5%;" *ngFor="let item of [2,3,4,5,65,2]" size="4">
+                        <div class="skeletonImgCategory">
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                          </div>
+                          <p class="skeletonTextCategory"><ion-skeleton-text animated style="width: 100% !important"></ion-skeleton-text></p> 
+                    </ion-col>
+            </ion-row>
+        </ion-grid>
+      </ng-template>
 </div>
    
 </ion-content>

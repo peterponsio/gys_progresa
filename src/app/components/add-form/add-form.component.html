@@ -1,5 +1,5 @@
 <div style="box-shadow: 3px 0px 6px -1px rgb(0 0 0 / 25%);">
-  <div style="margin-top: 1vh;" class="headerContainer">
+  <div style="margin-top: 2%;" class="headerContainer">
     <img (click)="onClickGoBackModal()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
     <div class="tittleCont">
       <p class="title">{{title}}</p>
@@ -19,22 +19,22 @@
   <form [formGroup]="formAddNew" (ngSubmit)="createNewOfert()">
     <div class="formFieldContainer">
       <div class="fieldsContainer">
-        <ion-input type="text" placeholder="Título"></ion-input>
+        <ion-input formControlName="titulo" type="text" placeholder="Título"></ion-input>
       </div >
       <div  class="fieldsContainer fieldTextArea">
-        <ion-textarea placeholder="Descripción"></ion-textarea>
+        <ion-textarea formControlName="descripcion" placeholder="Descripción"></ion-textarea>
       </div>
       <div  class="fieldsContainer">
-        <ion-input type="number" placeholder="Precio"></ion-input>
+        <ion-input formControlName="precio" type="number" placeholder="Precio"></ion-input>
       </div>
       <div  class="fieldsContainer">
-        <ion-input type="text" placeholder="Ubicación"></ion-input>
+        <ion-input formControlName="location"  type="text" placeholder="Ubicación"></ion-input>
       </div>
     </div>
 
-    <div (submit)="createNewOfert()" class="btnAddContainer">
+    <div *ngIf="showBtn"  class="btnAddContainer">
       <div class="addBtn">
-        <p>Añadir</p>
+        <ion-input type="submit"><p style="width: 100%;">Añadir</p></ion-input>
       </div>
     </div>
   </form>

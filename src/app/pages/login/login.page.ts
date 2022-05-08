@@ -1,8 +1,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { VisualsService } from 'src/app/services/visuals.service';
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginPage implements OnInit {
   seePass:boolean = false;
   passType:string = "password";
 
-  constructor(private nav:NavController,private formBuilder: FormBuilder,private authService:AuthServiceService,private alertService:VisualsService) { }
+  showBtn:boolean = true
+
+  constructor(private nav:NavController,private formBuilder: FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyb:Keyboard,private zg: NgZone) { }
 
   loginForm: FormGroup = this.formBuilder.group(
     {
@@ -27,6 +30,17 @@ export class LoginPage implements OnInit {
     )
 
   ngOnInit() {
+    this.keyb.onKeyboardWillShow().subscribe((res)=>{
+      this.zg.run(() => {
+        this.showBtn=false;
+      });
+    });
+    this.keyb.onKeyboardWillHide().subscribe((res)=>{
+  
+      this.zg.run(() => {
+        this.showBtn=true;
+      });
+    })
   }
 
   onClickGoBack(){

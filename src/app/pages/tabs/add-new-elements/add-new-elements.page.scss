@@ -6,10 +6,10 @@
     justify-content: center;
     align-items: center;
     font-family: 'Noto-Normal';
-    font-size: 2vh;
+    font-size: 16px;
     background-color: rgba(204, 204, 204, 0.2);
     border-radius: 8px;
-    margin-top: 2vh;
+    margin-top: 3%;
     padding-left: 2vw;
     padding-right: 2vw;
     ion-input {
@@ -17,10 +17,10 @@
     }
 }
 .searchBarContainer img{
-    height: 3vh;
+    height: 25px;
 }
 .filterOn{
-    border: 2px solid rgb(214, 88, 88) !important;
+    border: 1.4px solid rgb(214, 88, 88) !important;
 }
 
 
@@ -38,11 +38,11 @@
     width: 18%;
     justify-content: space-between;
     img{
-        height: 3vh;
+        height: 25px;
     }
 }
 .categoryText{
-    font-size: 2vh;
+    font-size: 16px;
     font-family: 'Noto-Sans';
 }
 .listCategorysContainer{
@@ -60,6 +60,40 @@ ion-col{
     justify-content: center;
     text-align: center;
     img{
-        height: 7vh;
+        height: 55px;
     }
+}
+
+.skeletonImgCategory{
+    width: 90% !important;
+    height: 50px !important;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+   	
+}
+.skeletonTextCategory{
+    width: 60% !important;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.skeletonItem{
+    display: flex;
+    align-items: center;
+    width: 98%;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 10%;
+}
+
+.leftimg{
+    height: 95px;
+    width: 30%;
+    border-radius: 16px 0px 0px 16px;
 }

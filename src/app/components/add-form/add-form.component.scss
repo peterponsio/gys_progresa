@@ -2,14 +2,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 3vh;
-    margin-right: 3vh !important;
-    padding-bottom: 1vh;
+    margin-left: 5vw;
+    margin-right: 5vw !important;
+    padding-bottom: 2%;
 }
 
 .backBtn{
-    height: 4vh;
-
+    height: 27px;
 }
 
 .tittleCont{
@@ -20,12 +19,12 @@
 }
 
 .title{
-    font-size: 2.5vh;
+    font-size: 18px;
     margin: 0;
     color: #f36b6b;
 }
 .category{
-    font-size: 1.5vh;
+    font-size: 13px;
     margin: 0;
     color: rgb(143, 140, 140);
 }
@@ -37,7 +36,7 @@
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    height: 25%;
+    height: 220px;
 }
 
 .imgAddIcon{
@@ -46,10 +45,10 @@
     justify-content: center;
     align-items: center;
     img{
-        height: 3vh;
+        height: 25px;
     }
     p{
-        font-size: 1.5vh;
+        font-size: 12px;
         font-family: "Noto-Sans";
         color: #f36b6b;
     }
@@ -62,7 +61,7 @@
     flex-direction: column;
 }
 .fieldsContainer{
-    margin-top: 3vh;
+    margin-top: 3%;
     border-bottom: 1px solid rgb(192, 68, 68);
     box-shadow: 3px 0px 6px -1px rgb(0 0 0 / 25%);
     ion-input{
@@ -83,14 +82,15 @@
     margin: 0 auto;
     /* height: 20vh; */
     position: fixed;
-    bottom: 3vh;
+    bottom: 3%;
     left: 2vw;
-    height: 6vh;
+    height: 55px;
 }
 
 .addBtn{
+  
     background-color: #f36b6b;
-    font-size: 2vh;
+    font-size: 16px;
     font-family: "Noto-Sans";
     display: flex;
     align-items: center;
@@ -100,6 +100,6 @@
     width: 100%;
     color: #ffffff;
     border-radius: 8px;
-    height: 6vh;
- 
+    height: 55px;
+
 }
