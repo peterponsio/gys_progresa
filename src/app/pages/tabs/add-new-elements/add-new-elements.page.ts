@@ -1,3 +1,4 @@
+import { StorageService } from './../../../services/storage.service';
 import { Category } from './../../../interfaces/models';
 import { AddFormComponent } from './../../../components/add-form/add-form.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -23,9 +24,14 @@ export class AddNewElementsPage implements OnInit {
     category: [''],
     });
 
+    currentUser: any
 
 
-  constructor(private formBuilder: FormBuilder,private platform:Platform,private modalController: ModalController,private data:DataService) { }
+  constructor(private formBuilder: FormBuilder,private platform:Platform,private modalController: ModalController,private data:DataService,private storage:StorageService) {
+    setTimeout(() => {
+      this.currentUser =  storage.get('user')
+    }, 1000);  
+   }
 
   ngOnInit() {    
     this.data.listCategory.subscribe(res=>{

@@ -26,10 +26,19 @@ export class AddFormComponent implements OnInit {
 
   currentUser:any
 
+  userData: any 
+
   constructor(private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService,private data:DataService,private keyb:Keyboard,private zg: NgZone,private camera:Camera,private storage:StorageService) {
-      this.currentUser = storage.get('user')
-      console.log(this.currentUser);
-      
+        
+  }
+
+  async ionViewDidEnter() {
+    this.currentUser = await this.storage.get('user')
+    this.data.getUser(this.currentUser).valueChanges().subscribe(res=>{
+      console.log(res);
+      this.userData = res
+      console.log(res);
+    });
   }
 
   formAddNew: FormGroup = this.formBuilder.group(
@@ -42,7 +51,7 @@ export class AddFormComponent implements OnInit {
   )
 
   ngOnInit() {
-   
+     
     console.log("moment", moment().local().format());
     
     this.keyb.onKeyboardWillShow().subscribe((res)=>{
@@ -78,9 +87,7 @@ export class AddFormComponent implements OnInit {
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(base64Image);
-      for (let index = 0; index < 6; index++) {
-        this.listPhotos.push(base64Image)
-      }
+      this.listPhotos.push(base64Image)
      }, (err) => {
         console.log("error camera ",err);
      });
@@ -100,11 +107,17 @@ export class AddFormComponent implements OnInit {
         views: 0,
         created_at: moment().local().format('YYYY-MM-DD[T]HH:mm:ss'),
         reports: 0,
-        created_by: this.currentUser
+        created_by: this.userData
       }
-
-
-      this.data.addOfert(ofert);
+      try {
+        this.data.addOfert(ofert);
+        console.log("entro ",ofert);
+      } catch (error) {
+        this.visuals.alertInfoBasic("Algo salio mal, intentelo de nuevo")
+        console.log("error add", error);
+        
+      }
+     
     }else{
       this.visuals.alertInfoBasic("Datos Erroneos");
     }

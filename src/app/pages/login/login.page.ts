@@ -79,7 +79,11 @@ export class LoginPage implements OnInit {
       this.authService.login(this.loginForm.getRawValue()).then(res=>{
         console.log(res);
         this.alertService.dissMissLoaders();
-        this.loginForm.reset()
+        if(res != null ){
+          this.loginForm.reset()
+          this.validFieldMail =false
+          this.validFieldPassword = false
+        }
       }).catch(err=>{
         console.log(err)
         this.alertService.alertInfoBasic("Datos Erroneos")

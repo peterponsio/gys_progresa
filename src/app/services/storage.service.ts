@@ -29,7 +29,7 @@ export class StorageService {
     const datos = await this._storage.get(key).then(res=>{
       return res;
     })
-    
+    return datos
     console.log(datos);
    
   }

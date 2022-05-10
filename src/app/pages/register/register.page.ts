@@ -97,7 +97,13 @@ export class RegisterPage implements OnInit {
           this.authService.register(this.registerForm.getRawValue()).then(res=>{
             this.nav.navigateForward("tabs/list-elements",{animated:false});
             this.alertService.dissMissLoaders();
-            this.registerForm.reset()
+            if(res != null ){
+              this.registerForm.reset()
+              this.validFieldMail =false
+              this.validFieldName  = false
+              this.validFieldPassword = false
+              this.validFieldPassword2 = false
+            }
           }).catch(err=>{
             console.log(err)
             this.alertService.alertInfoBasic("Datos Erroneos")

@@ -23,6 +23,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
+//import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
+
 
 
 
@@ -55,6 +57,7 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     Keyboard,
+    //ImagePicker
   ],
   bootstrap: [AppComponent],
 })
