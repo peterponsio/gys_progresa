@@ -54,7 +54,7 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
-    Keyboard
+    Keyboard,
   ],
   bootstrap: [AppComponent],
 })

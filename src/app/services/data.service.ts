@@ -23,6 +23,11 @@ export class DataService {
     this.getOfertsList()
    }
 
+
+   generateIds():string{
+    return this.firestore.createId()
+   }
+
   getCategoryList(){
     this.listCategory = this.categoryCollection.valueChanges();
   }

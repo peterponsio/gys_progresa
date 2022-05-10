@@ -12,6 +12,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { VisualsService } from './visuals.service';
 import { Users } from '../interfaces/models';
+import { StorageService } from './storage.service';
 
 
 
@@ -24,7 +25,7 @@ export class AuthServiceService {
   windowRef: any;
   recaptchaVerifier:any
   
-  constructor(private firestore: AngularFirestore,private authAccess: AngularFireAuth,private nav:NavController,private alertService:VisualsService) {
+  constructor(private firestore: AngularFirestore,private authAccess: AngularFireAuth,private nav:NavController,private alertService:VisualsService,private storage:StorageService) {
     this.getUserState();
    }
 
@@ -32,12 +33,14 @@ export class AuthServiceService {
   getUserState(){
     this.authAccess.authState.subscribe(user=>{
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+        this.userData = user;  
+        this.storage.set('user', this.userData.uid)
+        //localStorage.setItem('user', JSON.stringify(this.userData));
+        //JSON.parse(localStorage.getItem('user'));
       } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+       // localStorage.setItem('user', null);
+        this.storage.set('user', null)
+       // JSON.parse(localStorage.getItem('user'));
       }
     })
   }
@@ -63,7 +66,8 @@ export class AuthServiceService {
 
   SignOut() {
     return this.authAccess.signOut().then(() => {
-      localStorage.removeItem('user');
+      this.storage.removeItem('user')
+      //localStorage.removeItem('user');
       this.nav.navigateBack(['login']);
     });
   }

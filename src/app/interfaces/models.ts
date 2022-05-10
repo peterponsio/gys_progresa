@@ -9,7 +9,7 @@ export interface Ofertas{
     id:string,
     title:string,
     category:string,
-    listImg: [],
+    listImg: Array<any>,
     location:any,
     description:string,
     views:number,
