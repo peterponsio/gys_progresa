@@ -8,28 +8,33 @@
 </div>
 </div>
 <ion-content>
+  <form [formGroup]="formAddNew" (ngSubmit)="createNewOfert()">
 
-  <div class="containerCameraAdd">
-    <div class="imgAddIcon">
+
+  <div *ngIf="listPhotos.length==0" class="containerCameraAdd" (click)="onClickAddListImg()">
+    <div class="imgAddIcon" >
       <img src="../../../assets/icon/camera.svg" alt="">
       <p>Añade hasta 6 fotos</p>
     </div>
   </div>
 
-  <form [formGroup]="formAddNew" (ngSubmit)="createNewOfert()">
+
     <div class="formFieldContainer">
       <div class="fieldsContainer">
         <ion-input formControlName="titulo" type="text" placeholder="Título"></ion-input>
       </div >
+      <p class="infoFieldsText">¿Qué vendes u ofreces?</p>
       <div  class="fieldsContainer fieldTextArea">
         <ion-textarea formControlName="descripcion" placeholder="Descripción"></ion-textarea>
       </div>
+      <p class="infoFieldsText">15 caracteres mínimo</p>
       <div  class="fieldsContainer">
         <ion-input formControlName="precio" type="number" placeholder="Precio"></ion-input>
       </div>
       <div  class="fieldsContainer">
         <ion-input formControlName="location"  type="text" placeholder="Ubicación"></ion-input>
       </div>
+      <p class="infoFieldsText">Localidad o provincia</p>
     </div>
 
     <div *ngIf="showBtn"  class="btnAddContainer">

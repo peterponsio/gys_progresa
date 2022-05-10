@@ -39,6 +39,7 @@
     "firebase": "^9.7.0",
     "jetifier": "^2.0.0",
     "lottie-web": "^5.9.2",
+    "moment": "^2.29.3",
     "rxjs": "~6.6.0",
     "swiper": "^8.1.4",
     "tslib": "^2.2.0",
