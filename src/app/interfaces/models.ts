@@ -15,7 +15,7 @@ export interface Ofertas{
     views:number,
     created_at:any,
     reports:number,
-    created_by:Users,
+    created_by:any,
 }
 
 export interface Category{

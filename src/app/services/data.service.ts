@@ -1,3 +1,4 @@
+import { Users } from './../interfaces/models';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -15,6 +16,7 @@ export class DataService {
 
   private categoryCollection: AngularFirestoreCollection<Category> = this.firestore.collection<Category>('categorys');
   private ofertsCollection: AngularFirestoreCollection<Ofertas> = this.firestore.collection<Ofertas>('oferts');
+  private usersCollection:AngularFirestoreCollection<Users> = this.firestore.collection<Users>('Users');
   listCategory: Observable<Category[]>;
   listOferts: Observable<Ofertas[]>;
 
@@ -26,6 +28,10 @@ export class DataService {
 
    generateIds():string{
     return this.firestore.createId()
+   }
+
+   getUser(id :string){
+    return this.firestore.collection<Users>("Users").doc(id)
    }
 
   getCategoryList(){
@@ -40,7 +46,8 @@ export class DataService {
     let id = this.firestore.createId()
     ofert.id = id
     let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
-    this.ofertsCollection.add(ofert)
-    this.firestore.collection(ofertUri).add(ofert)
+    //this.ofertsCollection.add(ofert)
+    this.ofertsCollection.doc(id).set(ofert);
+    this.firestore.doc(ofertUri).set(ofert)
   }
 }

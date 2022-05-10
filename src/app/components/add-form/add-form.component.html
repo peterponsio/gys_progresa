@@ -8,7 +8,7 @@
 </div>
 </div>
 <ion-content>
-  <form [formGroup]="formAddNew" (ngSubmit)="createNewOfert()">
+  <form [formGroup]="formAddNew">
 
 
   <div *ngIf="listPhotos.length==0" class="containerCameraAdd" (click)="onClickAddListImg()">
@@ -39,7 +39,7 @@
 
     <div *ngIf="showBtn"  class="btnAddContainer">
       <div class="addBtn">
-        <ion-input type="submit"><p style="width: 100%;">Añadir</p></ion-input>
+        <ion-input type="submit" (click)="createNewOfert()"><p style="width: 100%;">Añadir</p></ion-input>
       </div>
     </div>
   </form>
