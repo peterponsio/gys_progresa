@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterSearchPipe implements PipeTransform {
 
-  transform(list: any[], text:string): any[] {
+  transform(list: any[], text:any): any[] {
     
-    return text != "" ?  list.filter(res => res.model.toLowerCase().includes(text.toLowerCase())) : list;
+    return text != "" && text != undefined ?  list.filter(res => res.model.toLowerCase().includes(text.toLowerCase())) : list;
 
 
 }

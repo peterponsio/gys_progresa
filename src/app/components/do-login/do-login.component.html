@@ -1,3 +1,114 @@
-<p>
-  do-login works!
-</p>
+
+<ion-content >
+  <div *ngIf="page=='add'">
+
+
+  <div (click)="onClickGoLIst()" class="headerIntro">
+    <img style="height: 22px;" src="../../../assets/icon/close_modal_superior.svg" alt="">
+  </div>
+
+  <div class="logoIntro">
+    <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
+  </div>
+
+  <div class="slideIntro">
+    <ion-slides  pager="true" [options]="slideOpts">
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div style="height: 230px;" id="svgContainerIntro"></div>
+  
+<img src="../../../assets/animations/dancer.json" alt="">
+  <div class="bottomBtns">
+    <!-- (click)="onClickLoginGoogle()" -->
+    <!-- <div   class="loginGoogleBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        <img src="../../../assets/icon/Google__G__Logo.svg" alt="">
+        Continuar con Google
+      </ion-button>
+    </div>   -->
+    <div (click)="onClickAddMore()" class="loginBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        <img src="../../../assets/icon/email_black_24dp 1.svg" alt="">
+        Continuar añadiendo
+      </ion-button>
+    </div>
+    <div  (click)="onClickSeeMyOferts()" class="loginBtn" style="background-color: #df4040;">
+      <ion-button style="color: white;" expand="block" fill="clear" shape="round">
+        Mis Anuncios
+      </ion-button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="page=='normal'">
+  
+  <div (click)="onClickGoLIst()" class="headerIntro">
+    <img src="../../../assets/icon/close.svg" alt="">
+  </div>
+
+  <div class="logoIntro">
+    <img src="../../../assets/imgSources/Group (2).svg" alt="logo gys">
+  </div>
+
+  <div class="slideIntro">
+    <ion-slides  pager="true" [options]="slideOpts">
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+      <ion-slide>
+        <p class="slideHeaderText">Contrata tus servicios, <br> donde quieras.</p>
+        <p class="slideInfoText">Encuentra diversos servicios <br> rápido y facil</p>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div style="height: 230px;" id="svgContainerIntro"></div>
+  
+<img src="../../../assets/animations/dancer.json" alt="">
+  <div class="bottomBtns">
+    <!-- (click)="onClickLoginGoogle()" -->
+    <!-- <div   class="loginGoogleBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        <img src="../../../assets/icon/Google__G__Logo.svg" alt="">
+        Continuar con Google
+      </ion-button>
+    </div>   -->
+    <div (click)="onClickLoginMail()" class="loginBtn">
+      <ion-button expand="block" fill="clear" shape="round">
+        <img src="../../../assets/icon/email_black_24dp 1.svg" alt="">
+        Continuar con email
+      </ion-button>
+    </div>
+  </div>
+   
+</div>
+</ion-content>
+
+

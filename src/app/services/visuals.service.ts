@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 //lottie
 
 import Lottie from 'lottie-web';
+import { DoLoginComponent } from '../components/do-login/do-login.component';
 
 @Injectable({
   providedIn: 'root'
@@ -134,6 +135,26 @@ export class VisualsService {
 
   dissMissLoaders(){
     this.loadingController.dismiss();
+  }
+
+  async modalNotLoggedAdd() {
+    const modal = await this.modalController.create({
+    component: DoLoginComponent,
+    componentProps: {page:"add"}
+    });
+  
+    await modal.present();
+  
+  }
+
+  async modalNotLoggedNormal() {
+    const modal = await this.modalController.create({
+    component: DoLoginComponent,
+    componentProps: {page:"normal"}
+    });
+  
+    await modal.present();
+  
   }
 
 }

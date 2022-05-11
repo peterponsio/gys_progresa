@@ -31,8 +31,7 @@ export class IntroPage implements OnInit {
   }
   
   onClickGoLIst(){
-      this.visual.loadingStartAppWithoutAcc()
-    this.nav.navigateForward("tabs",{animated:false});
+    this.nav.back()
   }
 
   onClickLoginPhone(){
