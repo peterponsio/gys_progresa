@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderBasicComponent } from './header-basic/header-basic.component';
 import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DoLoginComponent } from './do-login/do-login.component';
 
 
 @NgModule({
   declarations: [
     HeaderBasicComponent,
     SlideSugeridosComponent,
-    AddFormComponent
+    AddFormComponent,
+    DoLoginComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     HeaderBasicComponent,
     SlideSugeridosComponent,
-    AddFormComponent
+    AddFormComponent,
+    DoLoginComponent
   ]
 })
 export class ComponentsModule { }

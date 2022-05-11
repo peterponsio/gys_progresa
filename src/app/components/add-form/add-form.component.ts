@@ -3,7 +3,7 @@ import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 
 import { VisualsService } from './../../services/visuals.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Component, Input, OnInit, NgZone } from '@angular/core';
 import { Ofertas } from 'src/app/interfaces/models';
 import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
@@ -28,7 +28,7 @@ export class AddFormComponent implements OnInit {
 
   userData: any 
 
-  constructor(private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService,private data:DataService,private keyb:Keyboard,private zg: NgZone,private camera:Camera,private storage:StorageService) {
+  constructor(private nav:NavController,private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService,private data:DataService,private keyb:Keyboard,private zg: NgZone,private camera:Camera,private storage:StorageService) {
         
   }
 
@@ -110,12 +110,18 @@ export class AddFormComponent implements OnInit {
         created_by: this.userData
       }
       try {
-        this.data.addOfert(ofert);
-        console.log("entro ",ofert);
+        if(this.userData){
+          this.data.addOfert(ofert);
+          this.visuals.modalNotLoggedAdd()
+          this.formAddNew.reset()
+          console.log("entro ",ofert);
+        }else{
+          this.visuals.modalNotLoggedNormal()
+        }
+       
       } catch (error) {
         this.visuals.alertInfoBasic("Algo salio mal, intentelo de nuevo")
         console.log("error add", error);
-        
       }
      
     }else{
