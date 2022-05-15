@@ -17,7 +17,7 @@
 
     <ion-grid  fixed *ngIf="lisItems.length > 0 else noCategory" >
         <ion-row *ngFor="let f of lisItems; let r = index">
-                <ion-col (click)="onClickAddNewByCat(item)" *ngFor="let item of lisItems[r]" size="4">
+                <ion-col (click)="onClickAddNewByCat(item)" *ngFor="let item of lisItems[r] | categoryFilter : categoryForm.getRawValue().searchBar" size="4">
                     <img src="{{item.img}}}" alt="">
                     <p>{{item.title}}</p>
                 </ion-col>

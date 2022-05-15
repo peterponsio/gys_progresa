@@ -13,12 +13,15 @@
   
     <div class="categorySlides" *ngIf="listCategory.length > 0 else noCategory" >
       <ion-slides  [scrollbar]="false" mode="ios" scrollbar="ios" [options]="slidesOptions">
-        <ion-slide *ngFor="let category of listCategory">
+        <ion-slide (click)="onClickFilterbyCategory(category)" *ngFor="let category of listCategory | categoryFilter : filterCategoty">
           <div *ngIf="!category.img"  class="skeletonImgCategory">
             <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
           </div>
           <img *ngIf="category.img"  src="{{category.img}}" alt="">
           <p>{{category.title}}</p> 
+        </ion-slide>
+        <ion-slide *ngIf="filterCategoty.length != 0"  (click)="onClickClearCategoryFilter()">
+          <p style="color: #d05454;">Eliminar Filtros</p> 
         </ion-slide>
       </ion-slides>
     </div>
@@ -40,7 +43,7 @@
 
   <div class="filterViewContainer">
     <div class="categoryText">
-      category : todo
+      category : {{filterCategoty || 'Todas'}}
     </div>
     <div class="typeViewContainer">
       <img (click)="onClickChangeView('list')" src="../../../../assets/icon/listView.svg" alt="">
@@ -51,27 +54,32 @@
   <div class="elementsContainer">
 
     <div *ngIf="listOferts.length > 0 else noOferts">
-    <div   (click)="onClickSeeElementDetails(item)" class="elemntContainer" *ngFor="let item of listOferts | filterSearch : filterText">
+    <div   (click)="onClickSeeElementDetails(oferts)" class="elemntContainer" *ngFor="let oferts of listOferts | filterSearch : filterText">
       <div class="imgElement">
-        <img src="https://placeholder.pics/svg/1200" alt="">
+        <img *ngIf="oferts.listImg[0]" src="{{oferts.listImg[0]}}" alt="">
+        <img *ngIf="!oferts.listImg[0]" src="https://placeholder.pics/svg/1200" alt="">
       </div>
       <div class="elemtsListContainerText">
         <div class="listElementHeader">
-          <div class="titleAnuncio">Titulo del anuncio</div>
+          <div *ngIf="oferts.title" class="titleAnuncio">{{oferts.title}}</div>
+          <div *ngIf="!oferts.title" class="titleAnuncio">--</div>
           <div class="favBtn">
-            <img src="../../../../assets/icon/favorite.svg" alt="">
+            <img  src="../../../../assets/icon/favorite.svg" alt="">
             <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
           </div>
         </div>
         <div class="priceContainer">
-          <p> <b>{{11 | currency}}</b></p>
+          <p *ngIf="oferts.price"> <b>{{oferts.price | currency:'EUR':'symbol':'1.2-2'}}</b></p>
+          <p style="color: rgb(166, 170, 170);" *ngIf="!oferts.price"> <b>'--' €</b></p>
         </div>
         <div class="locationContainer">
             <img src="../../../../assets/icon/location.svg" alt="">
-            <p>location</p>
+            <p *ngIf="oferts.location">{{oferts.location}}</p>
+            <p *ngIf="!oferts.location">ubicacion no disponible</p>
         </div>
         <div class="descContainer">
-          <p>descripcion</p>
+          <p *ngIf="oferts.category"> categoria : {{oferts.category}}</p>
+          <p *ngIf="!oferts.category"> categoria : Todas</p>
         </div>
       </div>
     </div>
