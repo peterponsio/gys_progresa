@@ -15,17 +15,26 @@
   <div *ngIf="listPhotos.length==0" class="containerCameraAdd" (click)="onClickAddListImg()">
     <div class="imgAddIcon" >
       <img src="../../../assets/icon/camera.svg" alt="">
-      <p>Añade hasta 6 fotos</p>
+      <p>Añade hasta 3 fotos</p>
     </div>
   </div>
 
+  <div  style="position: relative;" *ngIf="listPhotos.length!=0">
+    <img (click)="onClickAddListImg()" style="position: absolute;height: 60px;top: 35%;left: 45%;z-index: 9000000;" src="../../../assets/icon/photoadd.svg" alt="">
+   <ion-slides mode="ios" pager="ios" scrollbar="false" >
+     <ion-slide *ngFor="let item of listPhotos">
+      <img class="imgItemDetails" src="{{item}}" alt="">
+     </ion-slide>
+   </ion-slides>
+    
+  </div>
 
     <div class="formFieldContainer">
       <div class="fieldsContainer">
         <ion-input formControlName="titulo" type="text" placeholder="Título"></ion-input>
       </div >
-      <p class="infoFieldsText">¿Qué vendes u ofreces?</p>
-      <div  class="fieldsContainer fieldTextArea">
+      <p class="infoFieldsText">¿Qué vendes u ofreces? Maximo 10 caracteres</p>
+      <div style="padding-right: 3vw;"  class="fieldsContainer fieldTextArea">
         <ion-textarea formControlName="descripcion" placeholder="Descripción"></ion-textarea>
       </div>
       <p class="infoFieldsText">15 caracteres mínimo</p>
@@ -33,9 +42,16 @@
         <ion-input formControlName="precio" type="number" placeholder="Precio"></ion-input>
       </div>
       <div  class="fieldsContainer">
-        <ion-input formControlName="location"  type="text" placeholder="Ubicación"></ion-input>
+        <ion-input (ionChange)="SetingLocation($event)" formControlName="location"  type="text" placeholder="Ubicación"></ion-input>
+        <div *ngIf="showLocations" >
+          <div style="margin-left: 4.5vw;" *ngFor="let item of listProvincias | countryFilter : formAddNew.getRawValue().location; ; let i = index  ">
+            <p *ngIf="i<3" (click)="onClickSelectRegion(item.nm)">
+              {{item.nm}} 
+            </p>
+          </div>
+        </div>
       </div>
-      <p class="infoFieldsText">Localidad o provincia</p>
+      <p class="infoFieldsText">Localidad o provincia, maximo 15 caracteres</p>
     </div>
 
     <div *ngIf="showBtn"  class="btnAddContainer">

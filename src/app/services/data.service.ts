@@ -8,6 +8,7 @@ import {
   AngularFirestoreCollection 
 } from '@angular/fire/compat/firestore';
 import { Category, Ofertas } from '../interfaces/models';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,10 @@ export class DataService {
    }
 
 
-   generateIds():string{
-    return this.firestore.createId()
+   generateIds():number{
+     console.log( moment().toDate().getTime());
+     
+    return moment().toDate().getTime()
    }
 
    getUser(id :string){
@@ -43,11 +46,12 @@ export class DataService {
   }
 
   addOfert(ofert:Ofertas){
-    let id = this.firestore.createId()
-    ofert.id = id
+    let id = this.generateIds()
+    ofert.id = id.toString()
+    console.log("inserto ",ofert);
     let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
-    //this.ofertsCollection.add(ofert)
-    this.ofertsCollection.doc(id).set(ofert);
+    this.ofertsCollection.doc(ofert.id).set(ofert);
     this.firestore.doc(ofertUri).set(ofert)
+    
   }
 }

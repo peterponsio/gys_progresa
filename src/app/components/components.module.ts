@@ -1,3 +1,4 @@
+import { SwiperModule } from 'swiper/angular';
 import { AddFormComponent } from './add-form/add-form.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
@@ -6,6 +7,7 @@ import { HeaderBasicComponent } from './header-basic/header-basic.component';
 import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DoLoginComponent } from './do-login/do-login.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { DoLoginComponent } from './do-login/do-login.component';
   imports: [
     CommonModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule,
   ],
   exports: [
     HeaderBasicComponent,

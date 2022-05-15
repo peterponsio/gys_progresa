@@ -47,14 +47,14 @@
 }
 
 .loader{
-    --background: rgb(0, 0, 0.);
+    --background: rgb(0, 0, 0);
+    background-color: black;
     --padding:0;
-    --backdrop-opacity: 0.98;
+    --backdrop-opacity: 1;
     --spinner-color: rgb(238, 75, 75);
     width: 100%;
     height: 100%;
-    --height:20%;
-    --width:20%;
+   
 }
 
 //Modals Visuals

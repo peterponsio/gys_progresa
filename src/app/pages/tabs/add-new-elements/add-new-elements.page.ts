@@ -26,7 +26,6 @@ export class AddNewElementsPage implements OnInit {
 
     currentUser: any
 
-
   constructor(private formBuilder: FormBuilder,private platform:Platform,private modalController: ModalController,private data:DataService,private storage:StorageService) {
     setTimeout(() => {
       this.currentUser =  storage.get('user')

@@ -20,6 +20,7 @@ export class ListElementsPage implements OnInit {
   showGoTopBtn:boolean=false;
 
   filterText:any;
+  filterCategoty:any = "";
 
   searchForm: FormGroup = this.formBuilder.group({
     searchBar: [''],
@@ -42,8 +43,9 @@ export class ListElementsPage implements OnInit {
       },
     };
 
-    listCategory: Category[] = [];
-    listOferts: Ofertas[] = [];
+    listCategory: Category[] = []
+    listOferts: Ofertas[] = []
+    listOfertsOriginal: Ofertas[] = []
 
   constructor(private formBuilder: FormBuilder,private nav:NavController,private platform: Platform,private data:DataService) { }
 
@@ -52,14 +54,26 @@ export class ListElementsPage implements OnInit {
       this.listCategory = res;
     })
     this.data.listOferts.subscribe(res=>{
-     // this.listOfertsOriginal = res;
-      this.listOferts =res;
+      this.listOfertsOriginal = res;
+      this.listOferts =res.reverse();
     })
     
   }
 
   onSearchChange(){
     this.filterText = this.searchForm.getRawValue().searchBar
+  }
+
+  onClickFilterbyCategory(category:any){
+    this.filterCategoty = category.title.toLowerCase()
+    this.listOferts =  this.listOferts.filter(res => res.category.toLowerCase().includes(this.filterCategoty.toLowerCase()))
+    console.log("lisrta dasd",this.listOferts);
+    
+  }
+
+  onClickClearCategoryFilter(){
+    this.filterCategoty =""
+    this.listOferts = this.listOfertsOriginal
   }
 
   searchGotFocus(){

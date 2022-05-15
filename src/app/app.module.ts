@@ -1,6 +1,6 @@
 import { getAuth } from 'firebase/auth';
 import { Auth, provideAuth } from '@angular/fire/auth';
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -23,10 +23,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
-//import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 
-
-
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
 //Translate 
 
@@ -57,7 +55,7 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     Keyboard,
-    //ImagePicker
+    Chooser
   ],
   bootstrap: [AppComponent],
 })

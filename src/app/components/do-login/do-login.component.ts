@@ -35,11 +35,13 @@ export class DoLoginComponent implements OnInit {
   }
   
   onClickGoLIst(){
-    console.log("dasd");
+    this.visual.loadingStartApp()
     this.modalController.dismiss().then(res=>{
-      this.visual.loadingStartAppWithoutAcc()
-      this.nav.navigateBack("tabs",{animated:true})
-      window.location.reload();
+      this.nav.navigateBack("tabs",{animated:true}).then(()=>{
+        window.location.reload()
+        this.visual.dissMissLoaders()
+      })
+     
     })
     
   }
@@ -49,7 +51,7 @@ export class DoLoginComponent implements OnInit {
   }
 
   onClickAddMore(){
-    this.visual.dissMissLoaders()
+    this.modalController.dismiss()
   }
 
   onClickLoginMail(){
