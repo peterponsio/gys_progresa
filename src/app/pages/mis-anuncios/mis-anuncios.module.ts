@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MisAnunciosPageRoutingModule } from './mis-anuncios-routing.module';
 
 import { MisAnunciosPage } from './mis-anuncios.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MisAnunciosPageRoutingModule
+    MisAnunciosPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [MisAnunciosPage]
 })

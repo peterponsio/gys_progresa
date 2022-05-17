@@ -1,3 +1,4 @@
+import { StorageService } from 'src/app/services/storage.service';
 import { Users } from './../interfaces/models';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -15,22 +16,29 @@ import * as moment from 'moment';
 })
 export class DataService {
 
+  currentUser:any
+
   private categoryCollection: AngularFirestoreCollection<Category> = this.firestore.collection<Category>('categorys');
   private ofertsCollection: AngularFirestoreCollection<Ofertas> = this.firestore.collection<Ofertas>('oferts');
   private usersCollection:AngularFirestoreCollection<Users> = this.firestore.collection<Users>('Users');
+
   listCategory: Observable<Category[]>;
   listOferts: Observable<Ofertas[]>;
+  listOfertsUser: Observable<Ofertas[]>
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore ,private storage:StorageService) {
     this.getCategoryList()
     this.getOfertsList()
+    this.getUserLoged()
    }
 
-
    generateIds():number{
-     console.log( moment().toDate().getTime());
-     
+    //console.log( moment().toDate().getTime());
     return moment().toDate().getTime()
+   }
+
+   async getUserLoged(){
+    this.currentUser = await this.storage.get('user')
    }
 
    getUser(id :string){
@@ -43,6 +51,14 @@ export class DataService {
 
   getOfertsList(){
     this.listOferts = this.ofertsCollection.valueChanges();
+  }
+
+  getUserOferts(user:string){
+    let uri = `Users/${user}/MyOferts`
+    console.log("uri",uri);
+    
+    this.listOfertsUser = this.firestore.collection<Ofertas>(uri).valueChanges();
+    return this.listOfertsUser
   }
 
   addOfert(ofert:Ofertas){
