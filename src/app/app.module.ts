@@ -26,6 +26,9 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 
 import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+
+
 //Translate 
 
 //  import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -55,7 +58,8 @@ import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     Keyboard,
-    Chooser
+    Chooser,
+    CallNumber
   ],
   bootstrap: [AppComponent],
 })

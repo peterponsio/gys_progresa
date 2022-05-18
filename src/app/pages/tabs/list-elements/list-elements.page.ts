@@ -94,7 +94,7 @@ export class ListElementsPage implements OnInit {
   }
 
   onClickSeeElementDetails(item: any){
-    this.nav.navigateForward("element-details",{state: { details : item}});
+    this.nav.navigateForward("element-details",{state: { details : item, listOferts:this.listOferts}});
   }
 
   gotToTop() {
@@ -103,6 +103,10 @@ export class ListElementsPage implements OnInit {
 
   getScrollPosition(event :any){
     event.detail.scrollTop > this.platform.height() ? this.showGoTopBtn = true : this.showGoTopBtn = false;
+  }
+
+  onClickAddFav(ofert:any){
+
   }
 
 }

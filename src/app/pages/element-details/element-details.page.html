@@ -18,26 +18,26 @@
 
   <div class="textOptionsDetails">
     <div class="box1">
-      <p>{{1000 | currency}}</p>
+      <p>{{ofertData.price| currency:'EUR':'symbol':'1.2-2'}}</p>
       <div class="viewsContainer">
         <img src="../../../assets/icon/views_eye.svg" alt="">
-        <p>20k</p>
+        <p>{{ofertData.views}}</p>
       </div>
     </div>
     <div class="box2">
-      <p>Titulo</p>
+      <p>{{ofertData.title}}</p>
     </div>
     <div class="box4">
       <img src="../../../../assets/icon/location.svg" alt="">
-      <p>location</p>
+      <p>{{ofertData.location}}</p>
     </div>
   </div>
   <div class="box3">
     <div class="titleDesc">
       <p>Descripción</p>
-      <p>{{ 25 | date}}</p>
+      <p>{{ofertData.created_at}}</p>
     </div>
-    <p> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <p>{{ofertData.description}}</p>
   </div>
   
   <div class="textHeaderInfo">
@@ -45,7 +45,17 @@
   </div>
 
   <div class="suggestContainer">
-    <app-slide-sugeridos [listItems]="listItems"></app-slide-sugeridos>
+    <app-slide-sugeridos [listItems]="listOferts"></app-slide-sugeridos>
+    <div style="display: flex;flex-direction: row;" *ngIf="listOferts.length==0">
+      <ion-slides style="width: 100% !important" class="slidesSugerenciasContainer" [scrollbar]="false" [options]="slideOpts">
+        <ion-slide style="height: 200px;width: 125px;"  *ngFor="let item of [1,2,3,4]">
+          <div >
+            <ion-skeleton-text style="height: 167px;;width: 125px;border-radius: 17px;" animated ></ion-skeleton-text>   
+          </div>
+          
+        </ion-slide>
+      </ion-slides>
+    </div>
   </div>
 
   <div class="vendedorContainer">
@@ -53,7 +63,7 @@
       <img src="../../../assets/icon/add.svg" alt="">
       <div class="titleVendedorContainer" style="display: flex;flex-direction: column;">
         <p style="font-size: 1vh !important; color: red;">Tienda</p>
-        <p>Tienda nombre</p>
+        <p>{{ofertData.created_by.name}}</p>
       </div>
     </div>
     <img style="height: 2vh; margin-right: 2vw;" src="../../../assets/icon/arrow.svg" alt="">
@@ -69,7 +79,7 @@
       <img src="../../../assets/icon/chatWhite.svg" alt="">
       <p>Chat</p>
     </div>
-    <div class="callOption">
+    <div (click)="onClickCall()" class="callOption">
       <img src="../../../assets/icon/phone.svg" alt="">
       <p>Llamar</p>
     </div>
