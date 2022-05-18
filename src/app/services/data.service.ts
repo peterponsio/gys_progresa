@@ -68,6 +68,17 @@ export class DataService {
     let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
     this.ofertsCollection.doc(ofert.id).set(ofert);
     this.firestore.doc(ofertUri).set(ofert)
+  }
+
+
+
+
+
+
+
+
+  callNumber(){
     
   }
+
 }
