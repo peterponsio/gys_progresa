@@ -31,7 +31,7 @@ export class IntroPage implements OnInit {
   }
   
   onClickGoLIst(){
-    this.nav.back()
+    this.nav.navigateForward("tabs",{animated:false})
   }
 
   onClickLoginPhone(){

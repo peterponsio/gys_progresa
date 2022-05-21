@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'phone-login',
     loadChildren: () => import('./phone-login/phone-login.module').then( m => m.PhoneLoginPageModule)
   },
+  {
+    path: 'element-details-user',
+    loadChildren: () => import('./pages/element-details-user/element-details-user.module').then( m => m.ElementDetailsUserPageModule)
+  },
 
 
 

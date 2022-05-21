@@ -10,18 +10,18 @@
   
   <div class="loginFieldsContainer">
     <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldName,'invalidFieldInput': !validFieldName }">
-      <ion-input (ionChange)="onChangeName()" (ionFocus)="fieldsGet('name')" formControlName="name" type="text" placeholder="nombre"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangeName()" (ionFocus)="fieldsGet('name')" formControlName="name" type="text" placeholder="nombre"></ion-input>
     </div>
     <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldMail,'invalidFieldInput': !validFieldMail }">
-      <ion-input (ionChange)="onChangeMail()" (ionFocus)="fieldsGet('email')" formControlName="email" type="text" placeholder="email"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangeMail()" (ionFocus)="fieldsGet('email')" formControlName="email" type="text" placeholder="email"></ion-input>
     </div>
     <div class="inputsContainer passwordField" [ngClass]="{'ValidFieldInput': validFieldPassword,'invalidFieldInput': !validFieldPassword }">
-      <ion-input (ionChange)="onChangePass()" (ionFocus)="fieldsGet('password')" formControlName="password1" [type]="passType" placeholder="password"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangePass()" (ionFocus)="fieldsGet('password')" formControlName="password1" [type]="passType" placeholder="password"></ion-input>
       <img (click)="onClickSeePass()" style="height: 25px;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
 
     <div class="inputsContainer passwordField" [ngClass]="{'ValidFieldInput': validFieldPassword2,'invalidFieldInput': !validFieldPassword2 }">
-      <ion-input (ionChange)="onChangePass2()" (ionFocus)="fieldsGet('password2')" formControlName="password2" [type]="passType2" placeholder="password"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangePass2()" (ionFocus)="fieldsGet('password2')" formControlName="password2" [type]="passType2" placeholder="password"></ion-input>
       <img (click)="onClickSeePass2()" style="height: 25px;" src="{{seePass2 ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
   </div>

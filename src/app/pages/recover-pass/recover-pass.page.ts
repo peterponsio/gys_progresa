@@ -2,6 +2,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { VisualsService } from 'src/app/services/visuals.service';
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 
 @Component({
   selector: 'app-recover-pass',
@@ -18,7 +19,7 @@ export class RecoverPassPage implements OnInit {
       //password:['',[Validators.required,Validators.minLength(6)]]
     })
 
-  constructor(private formBuilder:FormBuilder,private authService:AuthServiceService,private alertService:VisualsService) { }
+  constructor(private formBuilder:FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyboard:Keyboard) { }
 
   ngOnInit() {
   }
@@ -29,6 +30,12 @@ export class RecoverPassPage implements OnInit {
     }
   }
 
+  close(tecla){
+    if(tecla === 13){
+      this.keyboard.hide();
+    }
+  }
+  
   onChangeMail(){
     this.recoverForm.getRawValue().mail.length >=1 && this.recoverForm.controls.mail.valid ? this.validFieldMail = true : this.validFieldMail = false;
   }

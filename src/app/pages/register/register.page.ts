@@ -33,7 +33,7 @@ export class RegisterPage implements OnInit {
 
     showBtn:boolean = true
 
-  constructor(private nav:NavController, private formBuilder:FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyb:Keyboard,private zg: NgZone) { }
+  constructor(private nav:NavController, private formBuilder:FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyb:Keyboard,private zg: NgZone,private keyboard:Keyboard) { }
 
   ngOnInit() {
     this.keyb.onKeyboardWillShow().subscribe((res)=>{
@@ -47,6 +47,12 @@ export class RegisterPage implements OnInit {
         this.showBtn=true;
       });
     })
+  }
+
+  close(tecla){
+    if(tecla === 13){
+      this.keyboard.hide();
+    }
   }
 
   onClickSeePass(){

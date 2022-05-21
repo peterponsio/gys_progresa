@@ -36,24 +36,17 @@
   
 <img src="../../../assets/animations/dancer.json" alt="">
   <div class="bottomBtns">
-    <!-- (click)="onClickLoginGoogle()" -->
-    <!-- <div   class="loginGoogleBtn">
-      <ion-button expand="block" fill="clear" shape="round">
-        <img src="../../../assets/icon/Google__G__Logo.svg" alt="">
-        Continuar con Google
-      </ion-button>
-    </div>   -->
     <div (click)="onClickAddMore()" class="loginBtn">
       <ion-button expand="block" fill="clear" shape="round">
         <img src="../../../assets/icon/email_black_24dp 1.svg" alt="">
         Continuar añadiendo
       </ion-button>
     </div>
-    <div  (click)="onClickSeeMyOferts()" class="loginBtn" style="background-color: #df4040;">
-      <ion-button style="color: white;" expand="block" fill="clear" shape="round">
-        Mis Anuncios
+    <!-- <div (click)="onClickSeeMyOferts()"  class="loginBtn" style="background-color: #df4040;">
+      <ion-button [routerLink]="['/tabs/profile']" style="color: white;" expand="block" fill="clear" shape="round">
+        Perfil
       </ion-button>
-    </div>
+    </div> -->
   </div>
 </div>
 

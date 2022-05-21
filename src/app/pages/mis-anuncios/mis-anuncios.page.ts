@@ -30,7 +30,7 @@ export class MisAnunciosPage implements OnInit {
   }
 
   onClickSeeElementDetails(item: any){
-    this.nav.navigateForward("element-details",{state: { details : item, listOferts:this.listOferts}});
+    this.nav.navigateForward("element-details-user",{state: { details : item, listOferts:this.listOferts}});
   }
 
   gotToTop() {

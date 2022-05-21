@@ -66,9 +66,8 @@ export class ListElementsPage implements OnInit {
 
   onClickFilterbyCategory(category:any){
     this.filterCategoty = category.title.toLowerCase()
+    this.filterCategoty == "todas"  ? this.filterCategoty = "" : this.filterCategoty
     this.listOferts =  this.listOferts.filter(res => res.category.toLowerCase().includes(this.filterCategoty.toLowerCase()))
-    console.log("lisrta dasd",this.listOferts);
-    
   }
 
   onClickClearCategoryFilter(){

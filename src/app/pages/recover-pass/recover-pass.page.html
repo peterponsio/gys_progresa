@@ -12,7 +12,7 @@
   
   <div class="loginFieldsContainer">
     <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldMail,'invalidFieldInput': !validFieldMail }">
-      <ion-input (ionChange)="onChangeMail()" formControlName="mail" type="text" placeholder="email"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangeMail()" formControlName="mail" type="text" placeholder="email"></ion-input>
     </div>
   </div>
 

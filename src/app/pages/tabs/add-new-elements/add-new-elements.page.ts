@@ -3,8 +3,9 @@ import { Category } from './../../../interfaces/models';
 import { AddFormComponent } from './../../../components/add-form/add-form.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent, ModalController, Platform } from '@ionic/angular';
+import { IonContent, ModalController, NavController, Platform } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
+import { VisualsService } from 'src/app/services/visuals.service';
 
 @Component({
   selector: 'app-add-new-elements',
@@ -26,10 +27,12 @@ export class AddNewElementsPage implements OnInit {
 
     currentUser: any
 
-  constructor(private formBuilder: FormBuilder,private platform:Platform,private modalController: ModalController,private data:DataService,private storage:StorageService) {
-    setTimeout(() => {
-      this.currentUser =  storage.get('user')
-    }, 1000);  
+  constructor(private formBuilder: FormBuilder,private platform:Platform,private modalController: ModalController,private data:DataService,private storage:StorageService,private nav:NavController,private visual:VisualsService) {
+   }
+
+   async ionViewWillEnter() {
+     this.currentUser = await this.storage.get('user')
+     console.log("user profile",this.currentUser);
    }
 
   ngOnInit() {    
@@ -58,7 +61,12 @@ export class AddNewElementsPage implements OnInit {
   }
 
   onClickAddNewByCat(cat: any){
-    this.presentModal(cat);
+    if(this.currentUser !=undefined){
+      this.presentModal(cat);
+    }else{
+     this.visual.alertNotLogged()
+    }
+   
   }
 
   async presentModal(category) {
@@ -70,6 +78,9 @@ export class AddNewElementsPage implements OnInit {
     await modal.present();
     const { data } = await modal.onDidDismiss();
     console.log(data);
+    if(data.accion=="close"){
+      this.visual.dissMissLoaders()
+    }
   }
 
 }

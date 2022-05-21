@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { SwiperModule } from 'swiper/angular';
 import { AddFormComponent } from './add-form/add-form.component';
 import { IonicModule } from '@ionic/angular';
@@ -8,6 +9,7 @@ import { SlideSugeridosComponent } from './slide-sugeridos/slide-sugeridos.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { DoLoginComponent } from './do-login/do-login.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { PipesModule } from '../pipes/pipes.module';
     IonicModule,
     ReactiveFormsModule,
     PipesModule,
+    RouterModule
   ],
   exports: [
     HeaderBasicComponent,

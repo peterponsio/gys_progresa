@@ -133,19 +133,19 @@ export class VisualsService {
     }, 2000);
   }
 
+  async loadingProcess() {
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles',
+      cssClass: 'transparent',
+    });
+    await loading.present();
+  }
+
   dissMissLoaders(){
     this.loadingController.dismiss();
   }
 
-  async modalNotLoggedAdd() {
-    const modal = await this.modalController.create({
-    component: DoLoginComponent,
-    componentProps: {page:"add"}
-    });
   
-    await modal.present();
-  
-  }
 
   async modalNotLoggedNormal() {
     const modal = await this.modalController.create({
@@ -155,6 +155,38 @@ export class VisualsService {
   
     await modal.present();
   
+  }
+
+
+  alertNotLogged(): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      const alert =  await this.alertController.create({
+        message: "Para acceder a esta funcionalidad debe iniciar sesion",
+        mode: "ios",
+        buttons: [
+          {
+            role: "Cancel",
+            text: "Cerrar",
+            cssClass: "btnCancelAlertLogout",
+            handler: () => {
+              reject(false);
+            }
+          },
+          {
+            role: "OK",
+            text: "Iniciar Sesion",
+            handler: () => {
+              resolve(true);
+              this.nav.navigateBack("login")
+            }
+          }
+        ],
+        cssClass: 'basicInfoAlert',
+        backdropDismiss: true,
+        keyboardClose: true
+      });
+      alert.present();
+    });
   }
 
 }
