@@ -43,11 +43,11 @@
 
   <div class="filterViewContainer">
     <div class="categoryText">
-      category : {{filterCategoty || 'Todas'}}
+       {{filterCategoty || 'Todas'}}
     </div>
     <div class="typeViewContainer">
-      <img (click)="onClickChangeView('list')" src="../../../../assets/icon/listView.svg" alt="">
-      <img (click)="onClickChangeView('cards')" src="../../../../assets/icon/grid.svg" alt="">
+      <img *ngIf="typeView=='cards'"  (click)="onClickChangeView('list')" src="../../../../assets/icon/listView.svg" alt="">
+      <img *ngIf="typeView=='list'" (click)="onClickChangeView('cards')" src="../../../../assets/icon/grid.svg" alt="">
     </div>
   </div>
 
@@ -57,6 +57,7 @@
     <div    class="elemntContainer" *ngFor="let oferts of listOferts | filterSearch : filterText">
       <div (click)="onClickSeeElementDetails(oferts)" class="imgElement">
         <img *ngIf="oferts.listImg[0]" src="{{oferts.listImg[0]}}" alt="">
+        <!-- <ion-img style="height: 100%;" *ngIf="oferts.listImg[0]" [src]="oferts.listImg[0]"></ion-img> -->
         <img *ngIf="!oferts.listImg[0]" src="https://placeholder.pics/svg/1200" alt="">
       </div>
       <div class="elemtsListContainerText">

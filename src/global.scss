@@ -72,3 +72,18 @@
     }
 }
 
+ion-loading.transparent {
+    --spinner-color: rgb(238, 75, 75);
+    .loading-wrapper {
+      background: transparent;
+      box-shadow: none;
+  
+      .spinner-crescent circle {
+        --spinner-color: rgb(238, 75, 75);
+        stroke-width: 55px;
+        color: rgb(238, 75, 75);
+        width: 90px;
+      }
+    }
+  }
+

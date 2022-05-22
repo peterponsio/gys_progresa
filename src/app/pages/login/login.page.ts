@@ -5,6 +5,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { VisualsService } from 'src/app/services/visuals.service';
 import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -20,7 +21,7 @@ export class LoginPage implements OnInit {
 
   showBtn:boolean = true
 
-  constructor(private nav:NavController,private formBuilder: FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyb:Keyboard,private zg: NgZone) { }
+  constructor(private nav:NavController,private formBuilder: FormBuilder,private authService:AuthServiceService,private alertService:VisualsService,private keyb:Keyboard,private zg: NgZone,private keyboard:Keyboard) { }
 
   loginForm: FormGroup = this.formBuilder.group(
     {
@@ -73,17 +74,23 @@ export class LoginPage implements OnInit {
     this.loginForm.getRawValue().password.length >=1 && this.loginForm.controls.password.valid ? this.validFieldPassword = true : this.validFieldPassword = false;
   }
 
+  close(tecla){
+    if(tecla === 13){
+      this.keyboard.hide();
+    }
+  }
+
   onClickLoginMail(){
     if(this.loginForm.valid){
       this.alertService.loadingStartApp();
       this.authService.login(this.loginForm.getRawValue()).then(res=>{
-        console.log(res);
         this.alertService.dissMissLoaders();
         if(res != null ){
           this.loginForm.reset()
           this.validFieldMail =false
           this.validFieldPassword = false
         }
+        this.loginForm.reset()
       }).catch(err=>{
         console.log(err)
         this.alertService.alertInfoBasic("Datos Erroneos")

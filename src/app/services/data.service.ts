@@ -10,6 +10,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Category, Ofertas } from '../interfaces/models';
 import * as moment from 'moment';
+import { VisualsService } from './visuals.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class DataService {
   listOferts: Observable<Ofertas[]>;
   listOfertsUser: Observable<Ofertas[]>
 
-  constructor(private firestore: AngularFirestore ,private storage:StorageService) {
+  constructor(private firestore: AngularFirestore ,private storage:StorageService,private visuals:VisualsService) {
     this.getCategoryList()
     this.getOfertsList()
     this.getUserLoged()
@@ -61,6 +62,10 @@ export class DataService {
     return this.listOfertsUser
   }
 
+  updateUser(user:Users){
+    this.usersCollection.doc(user.id).set(user).then(res=>{})
+  }
+
   addOfert(ofert:Ofertas){
     let id = this.generateIds()
     ofert.id = id.toString()
@@ -68,6 +73,28 @@ export class DataService {
     let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
     this.ofertsCollection.doc(ofert.id).set(ofert);
     this.firestore.doc(ofertUri).set(ofert)
+  }
+
+  ReportOfert(ofert:Ofertas){
+    ofert.reports += 1
+    let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
+    this.ofertsCollection.doc(ofert.id).set(ofert).then(res=>{
+      console.log(res);
+    });
+    this.firestore.doc(ofertUri).set(ofert).then(()=>{
+      this.visuals.alertInfoBasic("Reporte enviado")
+    })
+  }
+
+  addViews(ofert:Ofertas){
+    ofert.views += 1
+    let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
+    this.ofertsCollection.doc(ofert.id).set(ofert).then(res=>{
+      console.log(res);
+    });
+    this.firestore.doc(ofertUri).set(ofert).then((res)=>{
+      console.log(res);
+    })
   }
 
 

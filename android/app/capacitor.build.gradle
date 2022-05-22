@@ -16,6 +16,7 @@ dependencies {
     implementation "androidx.core:core:1.6.+"
     implementation "com.google.android.gms:play-services-auth:15.0.1"
     implementation "com.google.android.gms:play-services-identity:15.0.1"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
 }
 
 

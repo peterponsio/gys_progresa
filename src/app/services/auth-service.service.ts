@@ -95,6 +95,8 @@ export class AuthServiceService {
       id: user.uid,
       mail: user.email,
       name: data.name,
+      phone:"",
+      profileImg:""
     };
     return userRef.set(userData, {
       merge: true,

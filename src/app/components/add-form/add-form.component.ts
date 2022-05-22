@@ -1,4 +1,5 @@
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { DoLoginComponent } from './../do-login/do-login.component';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './../../services/data.service';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
@@ -14,6 +15,10 @@ import * as moment from 'moment';
 import {Paises} from '../../interfaces/countryJson'
 
 import { finalize } from "rxjs/operators";
+
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
+
+
 
 @Component({
   selector: 'app-add-form',
@@ -38,7 +43,10 @@ export class AddFormComponent implements OnInit {
 
   locationSet: boolean = false
 
-  constructor(private nav:NavController,private modalController: ModalController, private formBuilder: FormBuilder,private visuals:VisualsService,private data:DataService,private keyb:Keyboard,private zg: NgZone,private camera:Camera,private storage:StorageService,private storageFire:AngularFireStorage) {
+  task: AngularFireUploadTask;
+  taskRef: AngularFireStorageReference;
+
+  constructor(private nav:NavController,private keyboard:Keyboard,private modalController: ModalController, private formBuilder: FormBuilder,private chooser:Chooser,private visuals:VisualsService,private data:DataService,private keyb:Keyboard,private zg: NgZone,private camera:Camera,private storage:StorageService,private storageFire:AngularFireStorage) {
         
   }
 
@@ -78,8 +86,15 @@ export class AddFormComponent implements OnInit {
     })
   }
 
+  close(tecla){
+    if(tecla === 13){
+      this.keyboard.hide();
+    }
+  }
+  
+
   onClickGoBackModal(){
-    this.visuals.alertDontSave().then(res=>{
+    this.visuals.alertDontSave("Quieres salir sin guardar datos?","Cancelar","Salir").then(res=>{
       this.modalController.dismiss(this.formAddNew.getRawValue());
     })
   }
@@ -95,67 +110,58 @@ export class AddFormComponent implements OnInit {
   }
  
   onClickAddListImg(){
-     const options: CameraOptions = {
-       quality: 100,
-       destinationType: this.camera.DestinationType.DATA_URL,
-       encodingType: this.camera.EncodingType.JPEG,
-       mediaType: this.camera.MediaType.ALLMEDIA,
-       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-     }
 
-      this.camera.getPicture(options).then((imageData) => {
- 
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-  
-        this.listPhotos.unshift(base64Image)
-
-        if(this.listPhotos.length == 4){
-          this.listPhotos.pop()
-        }
-     
-       }, (err) => {
-          console.log("error camera ",err);
-       });
+     this.chooser.getFile().then((fileData)=>{
+      this.visuals.loadingProcess()
+      let base64Image = fileData.data;
+        let path = `ofertsImgs/${this.data.generateIds()}`;
+        const fileRef = this.storageFire.ref(path)
+        const customMetadata = {type: 'image/jpeg'}
+       
+       const task =  fileRef.put(base64Image,{customMetadata}).snapshotChanges().pipe(
+          finalize(()=>{
+            fileRef.getDownloadURL().subscribe((img)=>{
+              if(this.listPhotos.length >= 3){
+                this.listPhotos.pop()
+                this.listPhotos.unshift(img)
+              }else{
+                this.listPhotos.unshift(img)
+              }
+              this.visuals.dissMissLoaders()
+            })
+          })
+        ).subscribe();
+      
+     }).catch(err=>{
+       window.alert("Algo salio mal")
+     })
   }
 
-  createNewOfert(){
+  async createNewOfert(){
     if(this.formAddNew.valid){
-
 
       let ofert: Ofertas = {
         id: "" + this.data.generateIds(),
         title: this.formAddNew.getRawValue().titulo,
         category: this.category.title.trim().toLowerCase(),
         price: this.formAddNew.getRawValue().precio,
-        listImg: this.listPhotos,
+        listImg: [...this.listPhotos] ,
         location: this.formAddNew.getRawValue().location,
         description: this.formAddNew.getRawValue().descripcion,
         views: 0,
         created_at: moment().local().format('YYYY-MM-DD[T]HH:mm:ss'),
         reports: 0,
         created_by: this.userData
-      }       
-        let ruta = this.data.generateIds();
-        let route = `/ofertsImgs/${ruta}`;
+      }      
       
-        if(ofert.listImg[0]){
-          const storageRef = this.storageFire.ref(route);
-          const uploadTask = storageRef.putString(ofert.listImg[0],"data_url");
-          uploadTask.snapshotChanges().pipe(
-            finalize(() => {
-              storageRef.getDownloadURL().subscribe( downloadURL => {
-                ofert.listImg[0] =  downloadURL;
-              });
-            })
-          )
-        }
-    
       try {
         if(this.userData){
+          console.log("oferta",ofert);
           this.data.addOfert(ofert);
-          this.visuals.modalNotLoggedAdd()
           this.formAddNew.reset()
-          console.log("entro ",ofert);
+          this.listPhotos= []
+          this.modalNotLoggedAdd()
+          
         }else{
           this.visuals.modalNotLoggedNormal()
           this.formAddNew.reset()
@@ -165,12 +171,30 @@ export class AddFormComponent implements OnInit {
         this.visuals.alertInfoBasic("Algo salio mal, intentelo de nuevo")
         console.log("error add", error);
       }
-     
+      
     }else{
       this.visuals.alertInfoBasic("Datos Erroneos");
     }
   }
 
-  
 
+  async modalNotLoggedAdd() {
+    const modal = await this.modalController.create({
+    component: DoLoginComponent,
+    componentProps: {page:"add"}
+    });
+  
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if(data.accion=="misAnuncios"){
+      this.visuals.loadingStartApp()
+      this.modalController.dismiss({'accion':'misAnuncios'})
+      this.visuals.dissMissLoaders()
+    }else if(data.accion=="close"){
+      this.visuals.loadingStartApp()
+      this.modalController.dismiss({'accion':'close'})
+      this.visuals.dissMissLoaders()
+    }
+  
+  }
 }

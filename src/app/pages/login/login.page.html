@@ -15,21 +15,16 @@
 
   <div class="loginFieldsContainer">
     <div class="inputsContainer" [ngClass]="{'ValidFieldInput': validFieldMail,'invalidFieldInput': !validFieldMail }">
-      <ion-input (ionChange)="onChangeMail()" formControlName="mail" (ionFocus)="fieldsGet('email')" type="text" placeholder="email"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangeMail()" formControlName="mail" (ionFocus)="fieldsGet('email')" type="text" placeholder="email"></ion-input>
     </div>
     <div class="inputsContainer passwordField"  [ngClass]="{'ValidFieldInput': validFieldPassword,'invalidFieldInput': !validFieldPassword }">
-      <ion-input (ionChange)="onChangePass()" formControlName="password" (ionFocus)="fieldsGet('password')" [type]="passType" placeholder="password"></ion-input>
+      <ion-input  (keypress)="close($event.keyCode)" (ionChange)="onChangePass()" formControlName="password" (ionFocus)="fieldsGet('password')" [type]="passType" placeholder="password"></ion-input>
       <img (click)="onClickSeePass()" style="height: 25px;" src="{{seePass ? '../../../assets/icon/eyeActivated.svg' : '../../../assets/icon/eye.svg'}}" alt="">
     </div>
   </div>
   <div class="recoverPass">
     <p (click)="onClickRecoverPass()">¿Has olvidado tu contraseña?</p>
   </div>
-  <!-- <div class="recorderContainer">
-    <ion-toggle></ion-toggle>
-    <p>Recuerdame</p>
-  </div> -->
-
   
   <div class="bottomBtns" *ngIf="showBtn" >
     <div (click)="onClickLoginMail()" class="loginBtn">
