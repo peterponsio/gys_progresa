@@ -1,12 +1,13 @@
 <ion-slides class="slidesSugerenciasContainer" [scrollbar]="false" [options]="slideOpts">
-  <ion-slide *ngFor="let item of listItems">
+  <ion-slide (click)="onClickSeeElementDetails(item)" *ngFor="let item of listItems">
     <ion-card>
-      <ion-card-header>
-       <img  src="../../../assets/imgSources/Group.svg" alt="">
+      <ion-card-header style="padding: 0;">
+       <img  *ngIf="item.listImg.length == 0" src="https://placeholder.pics/svg/2000x2000" alt="">
+       <img  *ngIf="item.listImg.length != 0" src="{{item.listImg[0]}}" alt="">
       </ion-card-header>
       <div class="cardContainer">
         <p>{{item.price | currency}}</p>
-        <p>{{item.title}}</p>
+        <p class="titleContent">{{item.title}}</p>
       </div>
     </ion-card>
   </ion-slide>

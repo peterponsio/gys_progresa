@@ -27,6 +27,8 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+
 
 
 //Translate 
@@ -59,7 +61,8 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
     Camera,
     Keyboard,
     Chooser,
-    CallNumber
+    CallNumber,
+    SocialSharing
   ],
   bootstrap: [AppComponent],
 })

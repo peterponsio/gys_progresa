@@ -1,9 +1,9 @@
  img{
-     max-height: 10vh
+    max-height: 16vh;
 }
 
 .cardContainer{
-    border-top: 0.1px solid rgb(121, 121, 121,0.2);
+    //border-top: 0.1px solid rgb(121, 121, 121,0.2);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -13,4 +13,12 @@
         margin: 0.5vh;
         padding: 0;
     }
+    .titleContent{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+    }
+  
 }   
