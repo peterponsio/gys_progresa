@@ -3,6 +3,7 @@ import { NavController, IonContent,Platform } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category, Ofertas } from 'src/app/interfaces/models';
+import { StorageService } from 'src/app/services/storage.service';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class ListElementsPage implements OnInit {
 
   filterText:any;
   filterCategoty:any = "";
+
+  
 
   searchForm: FormGroup = this.formBuilder.group({
     searchBar: [''],
@@ -48,6 +51,9 @@ export class ListElementsPage implements OnInit {
     listOfertsOriginal: Ofertas[] = []
 
   constructor(private formBuilder: FormBuilder,private nav:NavController,private platform: Platform,private data:DataService) { }
+
+ 
+
 
   ngOnInit() {
     this.data.listCategory.subscribe(res=>{

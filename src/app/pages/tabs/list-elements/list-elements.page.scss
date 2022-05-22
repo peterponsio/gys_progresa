@@ -50,7 +50,7 @@ ion-slide {
 .typeViewContainer{
     display: flex;
     align-items: center;
-    width: 18%;
+    width: 8%;
     justify-content: space-between;
     img{
         height: 25px;
@@ -59,6 +59,7 @@ ion-slide {
 .categoryText{
     font-size: 16px;
     font-family: 'Noto-Sans';
+    text-transform: capitalize
 }
 
 .elementsContainer{

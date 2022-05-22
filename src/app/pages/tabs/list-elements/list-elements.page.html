@@ -43,11 +43,11 @@
 
   <div class="filterViewContainer">
     <div class="categoryText">
-      category : {{filterCategoty || 'Todas'}}
+       {{filterCategoty || 'Todas'}}
     </div>
     <div class="typeViewContainer">
-      <img (click)="onClickChangeView('list')" src="../../../../assets/icon/listView.svg" alt="">
-      <img (click)="onClickChangeView('cards')" src="../../../../assets/icon/grid.svg" alt="">
+      <img *ngIf="typeView=='cards'"  (click)="onClickChangeView('list')" src="../../../../assets/icon/listView.svg" alt="">
+      <img *ngIf="typeView=='list'" (click)="onClickChangeView('cards')" src="../../../../assets/icon/grid.svg" alt="">
     </div>
   </div>
 

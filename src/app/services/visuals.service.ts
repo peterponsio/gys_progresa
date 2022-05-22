@@ -83,15 +83,15 @@ export class VisualsService {
     alert.present()
   }
 
-   alertDontSave(): Promise<boolean> {
+   alertDontSave(text:any,cancelBtn:any,okbtn:any): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
       const alert =  await this.alertController.create({
-        message: "Quieres salir sin guardar datos?",
+        message: text,
         mode: "ios",
         buttons: [
           {
             role: "Cancel",
-            text: "Cancelar",
+            text: cancelBtn,
             cssClass: "btnCancelAlertLogout",
             handler: () => {
               reject(false);
@@ -99,7 +99,7 @@ export class VisualsService {
           },
           {
             role: "OK",
-            text: "Salir",
+            text: okbtn,
             handler: () => {
               resolve(true);
             }

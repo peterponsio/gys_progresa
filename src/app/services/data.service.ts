@@ -62,6 +62,10 @@ export class DataService {
     return this.listOfertsUser
   }
 
+  updateUser(user:Users){
+    this.usersCollection.doc(user.id).set(user).then(res=>{})
+  }
+
   addOfert(ofert:Ofertas){
     let id = this.generateIds()
     ofert.id = id.toString()

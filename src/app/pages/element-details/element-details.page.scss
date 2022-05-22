@@ -281,3 +281,28 @@
     }
   
 }   
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5vw;
+    margin-right: 5vw !important;
+}
+
+.backBtn{
+    height: 30px;
+}
+
+.tittleCont{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto-Sans';
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    margin-right: 5vw !important;
+}
+.noCall{
+    width: 100%;
+}

@@ -94,7 +94,7 @@ export class AddFormComponent implements OnInit {
   
 
   onClickGoBackModal(){
-    this.visuals.alertDontSave().then(res=>{
+    this.visuals.alertDontSave("Quieres salir sin guardar datos?","Cancelar","Salir").then(res=>{
       this.modalController.dismiss(this.formAddNew.getRawValue());
     })
   }

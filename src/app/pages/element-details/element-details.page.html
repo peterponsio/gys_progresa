@@ -1,15 +1,20 @@
 
 <ion-content>
-  <app-header-basic title=""></app-header-basic>
+  <div  style="margin-top: 3%;" class="headerContainer">
+    <img (click)="onClickGoBack()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
+    <div class="tittleCont">
+      <p></p>
+    </div>
+  </div>
 
   <div class="imgContainer">
-    <swiper *ngIf="ofertData.listImg.length == 0" class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
+    <swiper *ngIf="dataShow.listImg.length == 0" class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
         <ng-template *ngFor="let item of [1,2,3,4]" swiperSlide>
           <img class="imgItemDetails" src="https://placeholder.pics/svg/2000x2000" alt="">
         </ng-template>
     </swiper>
-    <swiper *ngIf="ofertData.listImg.length > 0"  class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
-      <ng-template *ngFor="let itemImg of ofertData.listImg;let i = index" swiperSlide>
+    <swiper *ngIf="dataShow.listImg.length > 0"  class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
+      <ng-template *ngFor="let itemImg of dataShow.listImg;let i = index" swiperSlide>
         <img class="imgItemDetails" src="{{itemImg}}" alt="">
       </ng-template>
     </swiper>
@@ -37,18 +42,18 @@
 
   <div class="textOptionsDetails">
     <div class="box1">
-      <p>{{ofertData.price| currency:'EUR':'symbol':'1.2-2'}}</p>
+      <p>{{dataShow.price| currency:'EUR':'symbol':'1.2-2'}}</p>
       <div class="viewsContainer">
         <img src="../../../assets/icon/views_eye.svg" alt="">
-        <p>{{ofertData.views}}</p>
+        <p>{{dataShow.views}}</p>
       </div>
     </div>
     <div class="box2">
-      <p>{{ofertData.title}}</p>
+      <p>{{dataShow.title}}</p>
     </div>
     <div class="box4">
       <img src="../../../../assets/icon/location.svg" alt="">
-      <p>{{ofertData.location}}</p>
+      <p>{{dataShow.location}}</p>
     </div>
   </div>
   <div class="box3">
@@ -56,14 +61,14 @@
       <p>Descripción</p>
       <p>{{ofertDate}}</p>
     </div>
-    <p>{{ofertData.description}}</p>
+    <p>{{dataShow.description}}</p>
   </div>
   
   <div class="textHeaderInfo">
     <p>Ofertas Similares</p>
   </div>
 
-  <div class="suggestContainer">
+  <div *ngIf="!onSuggested" class="suggestContainer">
     <ion-slides class="slidesSugerenciasContainer" [scrollbar]="false" [options]="slideOptsSuggested">
       <ion-slide (click)="onClickSeeElementDetails(item)" *ngFor="let item of listOferts">
         <ion-card>
@@ -92,14 +97,25 @@
 
   <div class="vendedorContainer">
     <div class="headerVerdedor">
-      <img style="border-radius: 16px;" *ngIf="!ofertData.created_by.profileImg" src="https://placeholder.pics/svg/2000x2000" alt="">
-      <img style="border-radius: 16px;" *ngIf="ofertData.created_by.profileImg" src="{{ofertData.created_by.profileImg}}" alt="">
+      <img style="border-radius: 16px;" *ngIf="!dataShow.created_by.profileImg" src="https://placeholder.pics/svg/2000x2000" alt="">
+      <img style="border-radius: 16px;" *ngIf="dataShow.created_by.profileImg" src="{{dataShow.created_by.profileImg}}" alt="">
       <div class="titleVendedorContainer" style="display: flex;flex-direction: column;">
         <p style="font-size: 1vh !important; color: red;">Tienda</p>
-        <p>{{ofertData.created_by.name}}</p>
+        <p>{{dataShow.created_by.name}}</p>
       </div>
     </div>
     <img style="height: 2vh; margin-right: 2vw;" src="../../../assets/icon/arrow.svg" alt="">
+  </div>
+
+  <div class="contactOptionsContainer">
+    <div [ngClass]="{'noCall': dataShow.created_by.phone==''}" (click)="onClickOpenChat()" class="chatOption">
+      <img src="../../../assets/icon/chatWhite.svg" alt="">
+      <p style="margin-left: 2vw;">Chat</p>
+    </div>
+    <div *ngIf="dataShow.created_by.phone!=''" (click)="onClickCall()" class="callOption">
+      <img src="../../../assets/icon/phone.svg" alt="">
+      <p>Llamar</p>
+    </div>
   </div>
 
   <div (click)="onClickDenunciar()" class="reportAnuncioContainer">
@@ -107,16 +123,7 @@
     <p>Denunciar este anuncio</p>
   </div>
 
-  <div class="contactOptionsContainer">
-    <div (click)="onClickOpenChat()" class="chatOption">
-      <img src="../../../assets/icon/chatWhite.svg" alt="">
-      <p>Chat</p>
-    </div>
-    <div (click)="onClickCall()" class="callOption">
-      <img src="../../../assets/icon/phone.svg" alt="">
-      <p>Llamar</p>
-    </div>
-  </div>
+ 
 
 
 </ion-content>

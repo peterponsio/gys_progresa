@@ -1,3 +1,4 @@
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { VisualsService } from 'src/app/services/visuals.service';
 import { PopoverDetailsComponent } from './../../components/popover-details/popover-details.component';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
@@ -9,6 +10,7 @@ import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 
 import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 import * as moment from 'moment';
+import { StorageService } from 'src/app/services/storage.service';
 
 SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar]);
 
@@ -21,13 +23,16 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar]);
 export class ElementDetailsPage implements OnInit {
 
   ofertData:Ofertas
+  dataShow:Ofertas
   listOferts:Ofertas[] = []
   ofertDate:any
   slideOpts:any;
+  onSuggested:boolean = false
 
   slideOptsSuggested:any;
+  currentUserId:any;
 
-  constructor(private visual:VisualsService,private data:DataService,private nav:NavController,private router:Router,private social:SocialSharing,private popoverController:PopoverController) { 
+  constructor(private storage:StorageService,private callNumber:CallNumber,private visual:VisualsService,private data:DataService,private nav:NavController,private router:Router,private social:SocialSharing,private popoverController:PopoverController) { 
     this.slideOpts = {
       slidesPerView: 2.6,
       freeMode: true,
@@ -39,12 +44,15 @@ export class ElementDetailsPage implements OnInit {
       spaceBetween: -10
     };
   }
+  async ionViewWillEnter() {
+    this.currentUserId = await this.storage.get('user')
+  }
 
   ngOnInit() {
     this.ofertData =  this.router.getCurrentNavigation().extras.state.details;
+    this.dataShow = this.router.getCurrentNavigation().extras.state.details;
     this.listOferts =  this.router.getCurrentNavigation().extras.state.listOferts;
     this.listOferts = this.listOferts.filter(res=> res.category == this.ofertData.category && res.id != this.ofertData.id)
-    //this.ofertData.created_at =  moment(this.ofertData.created_at).format("DD-MM-yyyy")  
     this.ofertDate = moment(this.ofertData.created_at).format("DD-MM-yyyy")    
   }
 
@@ -52,8 +60,15 @@ export class ElementDetailsPage implements OnInit {
     this.data.addViews(this.ofertData)
   }
 
+  onClickGoBack(){
+    this.nav.back();
+    this.dataShow = this.ofertData
+  }
+
   onClickDenunciar(){
-    this.data.ReportOfert(this.ofertData)
+    this.visual.alertDontSave("Seguro que desea denunciar esta oferta","Cerrar","Si").then(res=>{
+      this.data.ReportOfert(this.ofertData)
+    })
   }
 
   onClickSeeStats(){
@@ -61,10 +76,23 @@ export class ElementDetailsPage implements OnInit {
   }
 
   onClickCall(){
-   // this.data.callNumber(this.ofertData.created_by.name)
+   
+    if(this.currentUserId !=undefined){
+      this.callNumber.callNumber("661130581",true).then(()=>{
+      }).catch(err=>{
+        this.visual.alertInfoBasic("Servicio no disponible")
+      })
+    }else{
+      this.visual.alertNotLogged()
+    }
   }
-  onClickOpenChat(){
 
+  onClickOpenChat(){
+  if(this.currentUserId !=undefined){
+    
+    }else{
+      this.visual.alertNotLogged()
+    }
   }
 
   onClickShareSocial(){
@@ -72,12 +100,13 @@ export class ElementDetailsPage implements OnInit {
   }
 
   onClickSeeElementDetails(item: any){
-    console.log("dasdad");
     this.visual.loadingStartApp()
-    this.nav.navigateForward("element-details",{state: { details : item, listOferts:this.listOferts}}).then(()=>{
-      window.location.reload()
+    this.dataShow = item
+    setTimeout(() => {
       this.visual.dissMissLoaders()
-    });
+    }, 1500);
+   
+    this.onSuggested = true
   }
   
 

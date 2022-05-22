@@ -54,6 +54,10 @@ const routes: Routes = [
     path: 'element-details-user',
     loadChildren: () => import('./pages/element-details-user/element-details-user.module').then( m => m.ElementDetailsUserPageModule)
   },
+  {
+    path: 'terms',
+    loadChildren: () => import('./pages/terms/terms.module').then( m => m.TermsPageModule)
+  },
 
 
 
