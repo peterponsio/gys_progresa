@@ -2,7 +2,7 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { VisualsService } from 'src/app/services/visuals.service';
 import { PopoverDetailsComponent } from './../../components/popover-details/popover-details.component';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
-import { Ofertas } from './../../interfaces/models';
+import { Ofertas, SesionChat, Users } from './../../interfaces/models';
 import { DataService } from './../../services/data.service';
 import { NavController, PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -31,6 +31,8 @@ export class ElementDetailsPage implements OnInit {
 
   slideOptsSuggested:any;
   currentUserId:any;
+  currentUser:Users
+
 
   constructor(private cd: ChangeDetectorRef,private storage:StorageService,private callNumber:CallNumber,private visual:VisualsService,private data:DataService,private nav:NavController,private router:Router,private social:SocialSharing,private popoverController:PopoverController) { 
     this.slideOpts = {
@@ -46,6 +48,12 @@ export class ElementDetailsPage implements OnInit {
   }
   async ionViewWillEnter() {
     this.currentUserId = await this.storage.get('user')
+    console.log(this.currentUserId);
+    
+    this.data.getUser(this.currentUserId).valueChanges().subscribe(res=>{
+      this.currentUser = res
+      console.log(res);
+    });
   }
 
   ngOnInit() {
@@ -87,8 +95,31 @@ export class ElementDetailsPage implements OnInit {
     }
   }
 
-  onClickOpenChat(){
+  async onClickOpenChat(){
+    this.visual.loadingProcess()
   if(this.currentUserId !=undefined){
+    let sesion : SesionChat = {
+      id: '',
+      img: this.ofertData.listImg[0] || '',
+      title: this.ofertData.title,
+      userGuest: this.currentUser,
+      userCreator: this.ofertData.created_by,
+      lastMsg: {
+        text: '',
+        created_at:  moment().local().format('DD-MM-yyyy')
+      },
+      ofert: this.ofertData 
+
+    }
+    try {
+      let user  =  await this.storage.get('user');
+      this.data.addSesionChat(sesion,user)
+      this.nav.navigateForward("chat-sesion",{animated:false,state:{sesion:sesion}}).then(()=>{
+        this.visual.dissMissLoaders()
+      })
+    } catch (error) {
+      this.visual.alertInfoBasic("Algo salio mal")
+    }
     
     }else{
       this.visual.alertNotLogged()

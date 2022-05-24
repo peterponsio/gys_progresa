@@ -116,11 +116,11 @@
   </div>
 
   <div *ngIf="currentUserId != dataShow.created_by.id" class="contactOptionsContainer">
-    <div [ngClass]="{'noCall': dataShow.created_by.phone==''}" (click)="onClickOpenChat()" class="chatOption">
+    <div  [ngClass]="{'noCall': dataShow.created_by.phone==''}" (click)="onClickOpenChat()" class="chatOption">
       <img src="../../../assets/icon/chatWhite.svg" alt="">
       <p style="margin-left: 2vw;">Chat</p>
     </div>
-    <div *ngIf="dataShow.created_by.phone!=''" (click)="onClickCall()" class="callOption">
+    <div *ngIf="dataShow.created_by.phone!=''" [ngClass]="{'noCall':dataShow.created_by.id == currentUserId}" (click)="onClickCall()" class="callOption">
       <img src="../../../assets/icon/phone.svg" alt="">
       <p>Llamar</p>
     </div>

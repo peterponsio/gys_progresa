@@ -35,18 +35,19 @@ export interface SesionChat{
     lastMsg:{
         text: string,
         created_at:any
-    }
+    },
+    ofert:Ofertas
 }
 
 export interface Chat{
     id:string,
     created_at:any,
-    listMsg: [Msg]
+    listMsg: Array<Msg>
 }
 export interface Msg{
     id:string,
     text:string
-    sendByGuest:boolean,
+    sendByGuest:Users,
     created_at:any
 }
 

@@ -18,19 +18,21 @@ export class MisFavoritosPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
   showGoTopBtn:boolean=false;
   currentUser:any
+  currentUserId:any
   listOferts:Ofertas[] = []
 
 
-  ionViewWillEnter() {
-    this.currentUser =  this.router.getCurrentNavigation().extras.state.userData;
+  async ionViewWillEnter() {
+   
+    this.currentUserId = await this.storage.get('user')
+    this.data.getUsersFavs(this.currentUserId).subscribe( res=>{
+      this.listOferts = res
+      console.log("dad",res);
+    })
   }
 
   ngOnInit() { 
-    this.data.getUsersFavs(this.currentUser).subscribe(res=>{
-      this.listOferts = res
-      console.log("cosas",res);
-      
-    })
+    this.currentUser =  this.router.getCurrentNavigation().extras.state.userData;
   }
 
   onClickGoBack(){
@@ -51,10 +53,15 @@ export class MisFavoritosPage implements OnInit {
 
   async onClickRemovefav(ofert:Ofertas){
     this.visual.loadingProcess()    
-    let user  =  await this.storage.get('user'); 
+
+    let user  =  await this.storage.get('user');
+
+    console.log("tttt",ofert);
+    
+
     ofert.isFav = false
     try {
-      this.data.removeFavorite(ofert,this.currentUser)
+      this.data.removeFavorite(ofert,user)
       this.cd.detectChanges()
       this.visual.dissMissLoaders()
     } catch (error) {
