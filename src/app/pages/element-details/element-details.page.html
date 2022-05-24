@@ -18,9 +18,17 @@
         <img class="imgItemDetails" src="{{itemImg}}" alt="">
       </ng-template>
     </swiper>
-    <div class="optionsDetails">
+    <div [ngClass]="{'noWidthCreator': currentUserId == dataShow.created_by.id}" class="optionsDetails">
       <img  class="iconsImg" (click)="onClickShareSocial()" src="../../../assets/icon/imgInsideIcons/share.svg" alt="">
-      <img  class="iconsImg" src="../../../assets/icon/favorite.svg" alt="">
+      <div *ngIf="!dataShow.isFav"   (click)="onClickAddFav()">
+        <img class="iconsImg"  src="../../../../assets/icon/favorite.svg" alt="">
+        <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+      </div>
+      <div *ngIf="dataShow.isFav"   (click)="onClickRemovefav()">
+        <img class="iconsImg" src="../../../../assets/icon/favorite_filled.svg" alt="">
+        <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+      </div>
+
       <!-- <img  class="iconsImg" src="../../../assets/icon/favorite_filled.svg" alt=""> -->
       <img  class="iconsImg" id="size-button" src="../../../assets/icon/imgInsideIcons/dots.svg" alt="">
       <ion-popover mode="md" trigger="size-button" [dismissOnSelect]="true">
@@ -97,8 +105,8 @@
 
   <div class="vendedorContainer">
     <div class="headerVerdedor">
-      <img style="border-radius: 16px;" *ngIf="!dataShow.created_by.profileImg" src="https://placeholder.pics/svg/2000x2000" alt="">
-      <img style="border-radius: 16px;" *ngIf="dataShow.created_by.profileImg" src="{{dataShow.created_by.profileImg}}" alt="">
+      <img style="border-radius: 100%;" *ngIf="!dataShow.created_by.profileImg" src="https://placeholder.pics/svg/2000x2000" alt="">
+      <img style="border-radius: 100%;" *ngIf="dataShow.created_by.profileImg" src="{{dataShow.created_by.profileImg}}" alt="">
       <div class="titleVendedorContainer" style="display: flex;flex-direction: column;">
         <p style="font-size: 1vh !important; color: red;">Tienda</p>
         <p>{{dataShow.created_by.name}}</p>
@@ -107,7 +115,7 @@
     <img style="height: 2vh; margin-right: 2vw;" src="../../../assets/icon/arrow.svg" alt="">
   </div>
 
-  <div class="contactOptionsContainer">
+  <div *ngIf="currentUserId != dataShow.created_by.id" class="contactOptionsContainer">
     <div [ngClass]="{'noCall': dataShow.created_by.phone==''}" (click)="onClickOpenChat()" class="chatOption">
       <img src="../../../assets/icon/chatWhite.svg" alt="">
       <p style="margin-left: 2vw;">Chat</p>

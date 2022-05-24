@@ -3,18 +3,39 @@
   <app-header-basic title=""></app-header-basic>
 
   <div class="imgContainer">
-    <swiper class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
-      <ng-template *ngFor="let item of [1,3,3,4,4]" swiperSlide>
-        <img class="imgItemDetails" src="https://placeholder.pics/svg/2000x2000" alt="">
+    <swiper *ngIf="ofertData.listImg.length == 0" class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
+        <ng-template *ngFor="let item of [1,2,3,4]" swiperSlide>
+          <img class="imgItemDetails" src="https://placeholder.pics/svg/2000x2000" alt="">
+        </ng-template>
+    </swiper>
+    <swiper *ngIf="ofertData.listImg.length > 0"  class="swipperDontBroke" [config]="{ slidesPerView: 1, pagination:true }">
+      <ng-template *ngFor="let itemImg of ofertData.listImg;let i = index" swiperSlide>
+        <img class="imgItemDetails" src="{{itemImg}}" alt="">
       </ng-template>
     </swiper>
     <div class="optionsDetails">
-      <img  class="iconsImg" src="../../../assets/icon/imgInsideIcons/share.svg" alt="">
-      <img  class="iconsImg" src="../../../assets/icon/imgInsideIcons/graph.svg" alt="">
+      <img  class="iconsImg" (click)="onClickShareSocial()" src="../../../assets/icon/imgInsideIcons/share.svg" alt="">
+      <img  class="iconsImg" (click)="onClickSeeStats()" src="../../../assets/icon/imgInsideIcons/graph.svg" alt="">
       <!-- <img  class="iconsImg" src="../../../assets/icon/favorite_filled.svg" alt=""> -->
-      <img  class="iconsImg" src="../../../assets/icon/imgInsideIcons/dots.svg" alt="">
+      <img  class="iconsImg" id="size-button" src="../../../assets/icon/imgInsideIcons/dots.svg" alt="">
+      <ion-popover mode="md" trigger="size-button" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item (click)="onEdit()" [button]="true" [detail]="false">
+                <ion-label>Editar</ion-label>
+              </ion-item>
+              <ion-item (click)="onClickDelete()" [button]="true" [detail]="false">
+                <ion-label>Eliminar</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
     </div>
   </div>
+
+  
 
   <div class="textOptionsDetails">
     <div class="box1">
@@ -35,17 +56,17 @@
   <div class="box3">
     <div class="titleDesc">
       <p>Descripción</p>
-      <p>{{ofertData.created_at}}</p>
+      <p>{{dateshow}}</p>
     </div>
     <p>{{ofertData.description}}</p>
   </div>
 
   <div class="contactOptionsContainer">
-    <div class="chatOption">
+    <div (click)="onClickDelete()" class="chatOption">
       <img src="../../../assets/icon/delete.svg" alt="">
       <p>Eliminar</p>
     </div>
-    <div (click)="onClickCall()" class="callOption">
+    <div (click)="onEdit()" class="callOption">
       <img src="../../../assets/icon/edit.svg" alt="">
       <p>Editar</p>
     </div>

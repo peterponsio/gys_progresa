@@ -175,7 +175,8 @@
     align-items: center;
     width: 100%;
     img{
-        height: 4vh;
+        height: 40px;
+        width: 40px;
     }
     padding-left: 2vw;
 }
@@ -305,4 +306,7 @@
 }
 .noCall{
     width: 100%;
+}
+.noWidthCreator{
+    width: 15% !important;
 }

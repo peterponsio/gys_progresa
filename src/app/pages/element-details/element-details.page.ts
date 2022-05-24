@@ -6,7 +6,7 @@ import { Ofertas } from './../../interfaces/models';
 import { DataService } from './../../services/data.service';
 import { NavController, PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 
 import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 import * as moment from 'moment';
@@ -32,7 +32,7 @@ export class ElementDetailsPage implements OnInit {
   slideOptsSuggested:any;
   currentUserId:any;
 
-  constructor(private storage:StorageService,private callNumber:CallNumber,private visual:VisualsService,private data:DataService,private nav:NavController,private router:Router,private social:SocialSharing,private popoverController:PopoverController) { 
+  constructor(private cd: ChangeDetectorRef,private storage:StorageService,private callNumber:CallNumber,private visual:VisualsService,private data:DataService,private nav:NavController,private router:Router,private social:SocialSharing,private popoverController:PopoverController) { 
     this.slideOpts = {
       slidesPerView: 2.6,
       freeMode: true,
@@ -108,6 +108,32 @@ export class ElementDetailsPage implements OnInit {
    
     this.onSuggested = true
   }
+
+  async onClickAddFav(){
+    this.visual.loadingProcess()   
+    let user  =  await this.storage.get('user'); 
+    try {
+      this.data.addToFavorites(this.ofertData,user)
+      this.visual.dissMissLoaders()
+    } catch (error) {
+      this.visual.dissMissLoaders()
+      console.log(error);      
+    }
+  }
+
+  async onClickRemovefav(){
+    this.visual.loadingProcess()    
+    let user  =  await this.storage.get('user');
+    try {
+      this.data.removeFavorite(this.ofertData,user)
+      this.cd.detectChanges()
+      this.visual.dissMissLoaders()
+    } catch (error) {
+      this.visual.dissMissLoaders()
+      console.log(error);      
+    }
+  }
+
   
 
 }

@@ -50,7 +50,13 @@ export class ProfilePage implements OnInit {
     }else{
       this.visualService.alertNotLogged()
     }
- 
+  }
+  onClickMyFavs(){
+    if(this.currentUserId !=undefined){
+      this.nav.navigateForward("mis-favoritos", {animated:false,state:{userData:this.currentUserId}})
+    }else{
+      this.visualService.alertNotLogged()
+    }
   }
 
   onClickAddProfileImg(){

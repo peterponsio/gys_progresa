@@ -58,6 +58,14 @@ const routes: Routes = [
     path: 'terms',
     loadChildren: () => import('./pages/terms/terms.module').then( m => m.TermsPageModule)
   },
+  {
+    path: 'edit-ofert',
+    loadChildren: () => import('./pages/edit-ofert/edit-ofert.module').then( m => m.EditOfertPageModule)
+  },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+  },
 
 
 

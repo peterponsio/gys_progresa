@@ -29,6 +29,10 @@ export class MisAnunciosPage implements OnInit {
 
   }
 
+  onClickGoBack(){
+    this.nav.navigateBack("/tabs/profile",{animated:false});
+  } 
+
   onClickSeeElementDetails(item: any){
     this.nav.navigateForward("element-details-user",{state: { details : item, listOferts:this.listOferts}});
   }
