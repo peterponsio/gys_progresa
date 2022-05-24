@@ -151,7 +151,8 @@ export class AddFormComponent implements OnInit {
         views: 0,
         created_at: moment().local().format('YYYY-MM-DD[T]HH:mm:ss'),
         reports: 0,
-        created_by: this.userData
+        created_by: this.userData,
+        isFav: false
       }      
       
       try {

@@ -1,9 +1,86 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>misFavoritos</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]="true"  (ionScroll)="getScrollPosition($event)">
+
+  <!-- hEADER  -->
+  <div class="headerFilters">
+    <div  style="margin-top: 3%;;" class="headerContainer">
+      <img (click)="onClickGoBack()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
+      <div class="tittleCont">
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size: 12px;" class="cantOferts">
+    {{listOferts.length}} Anuncios
+  </div>
+
+  <div class="elementsContainer">
+
+    <div *ngIf="listOferts.length > 0 else noOferts">
+    <div  class="elemntContainer" *ngFor="let oferts of listOferts">
+      <div (click)="onClickSeeElementDetails(oferts)" class="imgElement">
+        <img *ngIf="oferts.listImg[0]" src="{{oferts.listImg[0]}}" alt="">
+        <img *ngIf="!oferts.listImg[0]" src="https://placeholder.pics/svg/1200" alt="">
+      </div>
+      <div class="elemtsListContainerText">
+        <div class="listElementHeader">
+          <div (click)="onClickSeeElementDetails(oferts)" *ngIf="oferts.title" class="titleAnuncio">{{oferts.title}}</div>
+          <div (click)="onClickSeeElementDetails(oferts)" *ngIf="!oferts.title" class="titleAnuncio">--</div>
+          <div class="favBtn">
+            <img (click)="onClickRemovefav(oferts)" src="../../../../assets/icon/favorite_filled.svg" alt="">
+            <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+          </div>
+        </div>
+        <div (click)="onClickSeeElementDetails(oferts)" class="priceContainer">
+          <p *ngIf="oferts.price"> <b>{{oferts.price | currency:'EUR':'symbol':'1.2-2'}}</b></p>
+          <p style="color: rgb(166, 170, 170);" *ngIf="!oferts.price"> <b>'--' €</b></p>
+        </div>
+        <div (click)="onClickSeeElementDetails(oferts)" class="locationContainer">
+            <img src="../../../../assets/icon/location.svg" alt="">
+            <p *ngIf="oferts.location">{{oferts.location}}</p>
+            <p *ngIf="!oferts.location">ubicacion no disponible</p>
+        </div>
+        <div (click)="onClickSeeElementDetails(oferts)" class="descContainer">
+          <p *ngIf="oferts.category"> categoria : {{oferts.category}}</p>
+          <p *ngIf="!oferts.category"> categoria : Todas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <ng-template style="margin-bottom: 10%;" #noOferts>
+      <div class="skeletonItem" *ngFor="let item of [1,2,3,4,54,5,6,7,7,7,3]">
+     
+        <div class="leftimg">
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+
+        <div style="height: 100%;width: 65%;margin-left: 3vw;">
+       
+          <p> <ion-skeleton-text animated ></ion-skeleton-text></p>
+      
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        <div>
+          <ion-skeleton-text animated ></ion-skeleton-text>
+        </div>
+        
+      </div>
+    </div>
+    </ng-template>
+
+  </div>
+  
+  <div *ngIf="showGoTopBtn" class="back-to-top-btn"  (click)="gotToTop()">
+    <ion-icon name="chevron-up-outline"></ion-icon>
+  </div>
 
 </ion-content>

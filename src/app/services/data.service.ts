@@ -25,7 +25,8 @@ export class DataService {
 
   listCategory: Observable<Category[]>;
   listOferts: Observable<Ofertas[]>;
-  listOfertsUser: Observable<Ofertas[]>
+  listOfertsUser: Observable<Ofertas[]>;
+  listFavs: Observable<Ofertas[]>;
 
   constructor(private firestore: AngularFirestore ,private storage:StorageService,private visuals:VisualsService) {
     this.getCategoryList()
@@ -61,6 +62,44 @@ export class DataService {
     this.listOfertsUser = this.firestore.collection<Ofertas>(uri).valueChanges();
     return this.listOfertsUser
   }
+  
+   getUsersFavs(user:any){
+    if(!user){
+      let uri = `Users/${this.currentUser}/Favorites`
+      console.log("uri",uri);
+      this.listFavs = this.firestore.collection<Ofertas>(uri).valueChanges();
+    }else{
+      let uri = `Users/${user}/Favorites`
+      console.log("uri",uri);
+      this.listFavs = this.firestore.collection<Ofertas>(uri).valueChanges();
+    }
+    return this.listFavs
+  }
+
+  addToFavorites(ofert:Ofertas,user:any){
+    ofert.isFav = true
+    
+    this.firestore
+    .doc("Users/" + user + "/Favorites/" + ofert.id)
+    .set(ofert)
+    .then((res) => {
+      this.visuals.dissMissLoaders()
+    })
+    .catch((err) => {
+      this.visuals.alertInfoBasic("Algo Salio mal")
+    });
+
+
+  }
+  removeFavorite(ofert:Ofertas,user:any){
+    console.log("fav ",ofert);
+    let ofertUri =  `Users/${user}/Favorites/${ofert.id}` 
+    this.firestore.doc(ofertUri).delete().then(()=>{
+      this.visuals.dissMissLoaders()
+    }).catch(err=>{
+      this.visuals.alertInfoBasic("Algo salio mal")
+    })
+  }
 
   updateUser(user:Users){
     this.usersCollection.doc(user.id).set(user).then(res=>{})
@@ -73,6 +112,18 @@ export class DataService {
     let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
     this.ofertsCollection.doc(ofert.id).set(ofert);
     this.firestore.doc(ofertUri).set(ofert)
+  }
+  editOfert(ofert:Ofertas){
+    let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
+    this.ofertsCollection.doc(ofert.id).set(ofert);
+    return this.firestore.doc(ofertUri).set(ofert)
+  }
+
+  deleteOfert(ofert:Ofertas){
+    let ofertUri =  `Users/${ofert.created_by.id}/MyOferts/${ofert.id}` 
+
+    this.ofertsCollection.doc(ofert.id).delete();
+    return this.firestore.doc(ofertUri).delete()
   }
 
   ReportOfert(ofert:Ofertas){

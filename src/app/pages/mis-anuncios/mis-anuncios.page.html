@@ -3,10 +3,14 @@
 
   <!-- hEADER  -->
   <div class="headerFilters">
-    <app-header-basic title=""></app-header-basic>
+    <div  style="margin-top: 3%;;" class="headerContainer">
+      <img (click)="onClickGoBack()" class="backBtn" src="../../../assets/icon/back-arrow.svg" alt="">
+      <div class="tittleCont">
+      </div>
+    </div>
   </div>
 
-  <div class="cantOferts">
+  <div style="font-size: 12px;" class="cantOferts">
     {{listOferts.length}} Anuncios
   </div>
 
@@ -22,10 +26,7 @@
         <div class="listElementHeader">
           <div *ngIf="oferts.title" class="titleAnuncio">{{oferts.title}}</div>
           <div *ngIf="!oferts.title" class="titleAnuncio">--</div>
-          <div class="favBtn">
-            <img  src="../../../../assets/icon/favorite.svg" alt="">
-            <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
-          </div>
+         
         </div>
         <div class="priceContainer">
           <p *ngIf="oferts.price"> <b>{{oferts.price | currency:'EUR':'symbol':'1.2-2'}}</b></p>

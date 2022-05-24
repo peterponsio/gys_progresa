@@ -17,6 +17,7 @@ export interface Ofertas{
     created_at:any,
     reports:number,
     created_by:any,
+    isFav:boolean,
 }
 
 export interface Category{

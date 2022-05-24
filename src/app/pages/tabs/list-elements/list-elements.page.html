@@ -54,7 +54,7 @@
   <div class="elementsContainer">
 
     <div *ngIf="listOferts.length > 0 else noOferts">
-    <div    class="elemntContainer" *ngFor="let oferts of listOferts | filterSearch : filterText">
+    <div class="elemntContainer" *ngFor="let oferts of listOferts | filterSearch : filterText">
       <div (click)="onClickSeeElementDetails(oferts)" class="imgElement">
         <img *ngIf="oferts.listImg[0]" src="{{oferts.listImg[0]}}" alt="">
         <!-- <ion-img style="height: 100%;" *ngIf="oferts.listImg[0]" [src]="oferts.listImg[0]"></ion-img> -->
@@ -64,9 +64,15 @@
         <div class="listElementHeader">
           <div (click)="onClickSeeElementDetails(oferts)" *ngIf="oferts.title" class="titleAnuncio">{{oferts.title}}</div>
           <div (click)="onClickSeeElementDetails(oferts)" *ngIf="!oferts.title" class="titleAnuncio">--</div>
-          <div (click)="onClickAddFav(oferts)" class="favBtn">
-            <img  src="../../../../assets/icon/favorite.svg" alt="">
-            <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+          <div *ngIf="currentUserId != oferts.created_by.id">
+            <div *ngIf="!oferts.isFav"   (click)="onClickAddFav(oferts)" class="favBtn">
+              <img  src="../../../../assets/icon/favorite.svg" alt="">
+              <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+            </div>
+            <div *ngIf="oferts.isFav"   (click)="onClickRemovefav(oferts)" class="favBtn">
+              <img  src="../../../../assets/icon/favorite_filled.svg" alt="">
+              <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+            </div>
           </div>
         </div>
         <div (click)="onClickSeeElementDetails(oferts)" class="priceContainer">

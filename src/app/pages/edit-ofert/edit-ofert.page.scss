@@ -1,0 +1,127 @@
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5vw;
+    margin-right: 5vw !important;
+    padding-bottom: 2%;
+}
+
+.backBtn{
+    height: 27px;
+}
+
+.tittleCont{
+    display: flex;
+    flex-direction: column;
+   font-family: 'Noto-Sans';
+    margin-left: 5vw !important;
+}
+
+.title{
+    font-size: 18px;
+    margin: 0;
+    color: #f36b6b;
+}
+.category{
+    font-size: 13px;
+    margin: 0;
+    color: rgb(143, 140, 140);
+}
+
+.containerCameraAdd{
+    background-color: #d9d9d9;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+}
+
+.imgAddIcon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+        height: 25px;
+    }
+    p{
+        font-size: 12px;
+        font-family: "Noto-Sans";
+        color: #f36b6b;
+    }
+}
+
+.formFieldContainer{
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.fieldsContainer{
+    margin-top: 3%;
+    border-bottom: 1px solid rgb(192, 68, 68);
+    box-shadow: 3px 0px 6px -1px rgb(0 0 0 / 25%);
+    ion-input{
+        margin-left: 3vw;
+        font-family: 'Noto-Normal';
+    }
+    ion-textarea{
+        margin-left: 3vw;
+        padding-right: 2vw;
+        font-family: 'Noto-Normal';
+    }
+}
+
+.btnAddContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    margin: 0 auto;
+    /* height: 20vh; */
+    position: fixed;
+    bottom: 3%;
+    left: 2vw;
+    height: 55px;
+}
+
+.addBtn{
+  
+    background-color: #f36b6b;
+    font-size: 16px;
+    font-family: "Noto-Sans";
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    box-shadow: 3px 0px 6px -1px rgb(0 0 0 / 25%);
+    width: 100%;
+    color: #ffffff;
+    border-radius: 8px;
+    height: 55px;
+    
+
+}
+.infoFieldsText{
+    font-size: 12px;
+    color: red;
+    padding: 0;
+    margin: 0;
+}
+
+.slides-ios{
+    --bullet-background: var(--ion-color-step-200, #cccccc);
+    --bullet-background-active: #d65858;
+    --progress-bar-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+    --progress-bar-background-active: #d65858;
+    --scroll-bar-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+    --scroll-bar-background-active: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+}
+
+ion-slides{
+    height: 220px;
+    width: 100% !important;
+}
