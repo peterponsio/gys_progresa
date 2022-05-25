@@ -96,8 +96,9 @@ export class ElementDetailsPage implements OnInit {
   }
 
   async onClickOpenChat(){
-    this.visual.loadingProcess()
+   
   if(this.currentUserId !=undefined){
+    this.visual.loadingProcess()
     let sesion : SesionChat = {
       id: '',
       img: this.ofertData.listImg[0] || '',
@@ -118,10 +119,12 @@ export class ElementDetailsPage implements OnInit {
         this.visual.dissMissLoaders()
       })
     } catch (error) {
+      this.visual.dissMissLoaders()
       this.visual.alertInfoBasic("Algo salio mal")
     }
-    
+
     }else{
+      this.visual.dissMissLoaders()
       this.visual.alertNotLogged()
     }
   }
@@ -141,14 +144,21 @@ export class ElementDetailsPage implements OnInit {
   }
 
   async onClickAddFav(){
-    this.visual.loadingProcess()   
-    let user  =  await this.storage.get('user'); 
-    try {
-      this.data.addToFavorites(this.ofertData,user)
-      this.visual.dissMissLoaders()
-    } catch (error) {
-      this.visual.dissMissLoaders()
-      console.log(error);      
+
+    if(this.currentUserId !=undefined){
+      this.visual.loadingProcess()  
+    
+      let user  =  await this.storage.get('user');
+      
+      try {
+        this.data.addToFavorites(this.ofertData,user)
+        this.visual.dissMissLoaders()
+      } catch (error) {
+        this.visual.dissMissLoaders()
+        console.log(error);      
+      }
+    }else{
+      this.visual.alertNotLogged()
     }
   }
 
