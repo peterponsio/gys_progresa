@@ -1,26 +1,45 @@
-<div class="headerChat">
+<div style="height: 7%;background: white !important;" class="headerChat">
   <div class="subheaderChat">
-    <img (click)="onClickGoBack()" src="../../../assets/icon/back-arrow.svg" alt="">
+    <img style="margin-left: 2vw;" (click)="onClickGoBack()" src="../../../assets/icon/back-arrow.svg" alt="">
     <div style="display: flex;flex-direction: column; align-items: flex-start;">
-      <p style="margin: 0;padding: 0;">{{chatSesion}}</p>
-      <p style="margin: 0;padding: 0; font-size: 0.5vh; color: rgb(202, 101, 101);">{{chatSesion}}</p>
+      <p style="margin: 0;padding: 0; font-size: 20px;color: black;">{{chatSesion.ofert.title}}</p>
+      <p style="margin: 0;padding: 0; font-size: 13px; color: rgb(202, 101, 101);">{{chatSesion.ofert.location}}</p>
     </div>
   </div>
   <img (click)="onClickChatOption()" src="../../../assets/icon/imgInsideIcons/dots.svg" alt="">
 </div>
 <ion-content>
-
-  <div>
-    
+  <div *ngIf="listMsg.length != 0" >
+    <div *ngFor="let item of listMsg">
+      <div class="titleDateSesion">
+        <p>{{item.id}}</p>
+      </div>
+      <div *ngFor="let msg of item.listMsg" class="msg">
+        <div class="containerGuest"  *ngIf="msg.sendByGuest.id!=currentUserId">
+          <div class="guestMsg"  >
+            <p >{{msg.text}}</p>
+          </div>
+        </div>
+       <div class="containerOwner" *ngIf="msg.sendByGuest.id==currentUserId">
+        <div class="ownerMsg">
+          <p >{{msg.text}}</p>
+        </div>
+       </div>
+      </div>
+    </div>
   </div>
 
+  <!-- <div class="noMsg" *ngIf="listMsg.length == 0">
+    <p>No se han enviado Mensajes</p>
+  </div> -->
 </ion-content>
-<ion-footer style="border-top: 1px solid rgb(145, 139, 139,0.3);">
+
+<ion-footer style="background: white;border-top: 1px solid rgb(145, 139, 139,0.3);position: fixed;bottom: 0%;">
   <div class="chatBoxField">
     <img src="../../../assets/icon/clip.svg" alt="">
     <div  class="inputChatField ion-text-wrap">
-      <ion-input class="ion-text-wrap" type="text" placeholder="Escribe tu mensaje"></ion-input>
+      <ion-input style="color: black;" [(ngModel)]="msgChat" class="ion-text-wrap" type="text" placeholder="Escribe tu mensaje"></ion-input>
     </div>
-    <img src="../../../assets/icon/iconSend/send_outline.svg" alt="">
+    <img (click)="onClickAddMsg()" src="../../../assets/icon/iconSend/send_outline.svg" alt="">
   </div>
 </ion-footer>

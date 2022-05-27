@@ -20,15 +20,16 @@
     </swiper>
     <div [ngClass]="{'noWidthCreator': currentUserId == dataShow.created_by.id}" class="optionsDetails">
       <img  class="iconsImg" (click)="onClickShareSocial()" src="../../../assets/icon/imgInsideIcons/share.svg" alt="">
-      <div *ngIf="!dataShow.isFav"   (click)="onClickAddFav()">
-        <img class="iconsImg"  src="../../../../assets/icon/favorite.svg" alt="">
-        <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+      <div *ngIf="currentUserId != dataShow.created_by.id">
+        <div *ngIf="!dataShow.isFav"   (click)="onClickAddFav()">
+          <img class="iconsImg"  src="../../../../assets/icon/favorite.svg" alt="">
+          <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+        </div>
+        <div *ngIf="dataShow.isFav"   (click)="onClickRemovefav()">
+          <img class="iconsImg" src="../../../../assets/icon/favorite_filled.svg" alt="">
+          <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
+        </div>
       </div>
-      <div *ngIf="dataShow.isFav"   (click)="onClickRemovefav()">
-        <img class="iconsImg" src="../../../../assets/icon/favorite_filled.svg" alt="">
-        <!-- <img src="../../../../assets/icon/favorite_filled.svg" alt=""> -->
-      </div>
-
       <!-- <img  class="iconsImg" src="../../../assets/icon/favorite_filled.svg" alt=""> -->
       <img  class="iconsImg" id="size-button" src="../../../assets/icon/imgInsideIcons/dots.svg" alt="">
       <ion-popover mode="md" trigger="size-button" [dismissOnSelect]="true">
@@ -116,11 +117,11 @@
   </div>
 
   <div *ngIf="currentUserId != dataShow.created_by.id" class="contactOptionsContainer">
-    <div [ngClass]="{'noCall': dataShow.created_by.phone==''}" (click)="onClickOpenChat()" class="chatOption">
+    <div  [ngClass]="{'noCall': dataShow.created_by.phone==''}" (click)="onClickOpenChat()" class="chatOption">
       <img src="../../../assets/icon/chatWhite.svg" alt="">
       <p style="margin-left: 2vw;">Chat</p>
     </div>
-    <div *ngIf="dataShow.created_by.phone!=''" (click)="onClickCall()" class="callOption">
+    <div *ngIf="dataShow.created_by.phone!=''" [ngClass]="{'noCall':dataShow.created_by.id == currentUserId}" (click)="onClickCall()" class="callOption">
       <img src="../../../assets/icon/phone.svg" alt="">
       <p>Llamar</p>
     </div>

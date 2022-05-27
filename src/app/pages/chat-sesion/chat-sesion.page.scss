@@ -7,7 +7,8 @@
    
     justify-content: space-between;
     img{
-        height: 2.2vh;
+        height: 22px;
+        
     }
     border-bottom: 0.5px solid rgb(141, 141, 141,0.4);
 }
@@ -18,12 +19,10 @@
     align-items: center;
 
     img{
-        height: 3vh;
+        height: 30px;
     }
     p{
         font-family: 'Noto-Sans';
-        font-size: 2vh;
-        margin-left: 2vw;
     }
 }
 .chatBoxField{
@@ -34,7 +33,7 @@
     width: 100%;
     justify-content: space-between;
     img{
-        height: 3vh;
+        height: 28px;
     }
 }
 .inputChatField{
@@ -46,7 +45,7 @@
         height: 70%;
         
     }
-    padding-top: 1vh;
+    padding-top: 2%;
     padding-left: 1vw;
     padding-right: 1vw;
 }
@@ -57,3 +56,62 @@ ion-footer{
     display: flex;
     width: 100%;
 }
+
+.titleDateSesion{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+}
+.containerOwner{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 2vw !important;
+    padding-right: 3vw;
+}
+.containerGuest{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 2vw;
+    padding-left: 3vw;
+}
+
+
+.ownerMsg{
+    font-size: 13px;
+    background: #f37676;
+    max-width: 290px;
+    width: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    width: 60%;
+    margin: 0;
+    padding-left: 2vw;
+    border-radius: 16px;
+    margin-left: 2vw;
+    margin-top: 10px;
+    color: white;
+}
+.guestMsg{
+    font-size: 13px;
+    background: #222020;
+    max-width: 290px;
+    width: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    width: 60%;
+    margin: 0;
+    padding-left: 2vw;
+    border-radius: 16px;
+    margin-top: 10px;
+    color: white;
+}
+

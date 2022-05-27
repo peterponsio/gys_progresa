@@ -4,15 +4,17 @@
         <p>Mis Mensajes</p>
         <img src="../../../../assets/icon/imgInsideIcons/dots.svg" alt="">
     </div>
-    <ion-list>
-        <ion-item-sliding (click)="onClickOpemToSesion(item)" *ngFor="let item of ['hola','adios']">
-            <ion-item style="--padding-end: 20px">
+    <ion-list *ngIf="listChats.length!=0" >
+        <ion-item-sliding  *ngFor="let item of listChats">
+            <ion-item (click)="onClickOpemToSesion(item)" style="--padding-end: 20px">
                 <div class="chatSesionContainer" >
-                    <img src="../../../../assets/icon/add.svg" alt="">
+                    <img *ngIf="item.img == ''" style="border-radius: 100%;width: 90px;height: 69px;margin-right: 3vw;" src="https://placeholder.pics/svg/2000x2000" alt="">
+                    <img *ngIf="item.img != ''" style="border-radius: 100%;width: 90px;height: 69px;margin-right: 3vw;" src="{{item.img}}" alt="">
                     <div class="infoSesion">
-                        <p> Alberto</p>
-                        <p> Magos Sevilla</p>
-                        <p style="font-size: 1vh;">ultimo mensaje 20/03/2022</p>
+                        <p *ngIf="currentUserId != item.userCreator.id"> {{item.userCreator.name}}</p>
+                        <p *ngIf="currentUserId == item.userCreator.id"> {{item.userGuest.name}}</p>
+                        <p> {{item.title}}</p>
+                        <p style="font-size: 1vh;">Ultima actividad {{item.lastMsg.created_at}}</p>
                     </div>
                     <div class="handPointing">
                         <img  src="../../../../assets/icon/hand-pointing.svg" alt="">
@@ -21,13 +23,15 @@
                 </div>
             </ion-item>
             <ion-item-options side="end">
-                
-                <ion-item-option color="danger"> <ion-icon slot="top" name="trash"></ion-icon>
-                    Eliminar
+                <ion-item-option style="width: 60px;" (click)="onClickDeleteSesion(item)" color="danger"> <ion-icon slot="top" name="trash"></ion-icon>
                 </ion-item-option>
-                <ion-item-option >Reportar Usuario</ion-item-option>
+                <ion-item-option style="width: 60px;" color="warning" ><ion-icon name="alert-circle-outline"></ion-icon></ion-item-option>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
+    <div class="nochats" *ngIf="listChats.length==0">
+        
+        <p>No hay sesiones de chat activas</p>
+    </div>
 
 </ion-content>

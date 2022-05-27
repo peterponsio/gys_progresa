@@ -1,5 +1,5 @@
 import { StorageService } from 'src/app/services/storage.service';
-import { Users } from './../interfaces/models';
+import { Chat, SesionChat, Users } from './../interfaces/models';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -27,6 +27,8 @@ export class DataService {
   listOferts: Observable<Ofertas[]>;
   listOfertsUser: Observable<Ofertas[]>;
   listFavs: Observable<Ofertas[]>;
+  listChatSesions:  Observable<SesionChat[]>;
+  listMsgChat: Observable<Chat[]>;
 
   constructor(private firestore: AngularFirestore ,private storage:StorageService,private visuals:VisualsService) {
     this.getCategoryList()
@@ -77,7 +79,7 @@ export class DataService {
   }
 
   addToFavorites(ofert:Ofertas,user:any){
-    ofert.isFav = true
+   // ofert.isFav = true
     
     this.firestore
     .doc("Users/" + user + "/Favorites/" + ofert.id)
@@ -148,15 +150,54 @@ export class DataService {
     })
   }
 
+  addSesionChat(sesion:SesionChat,user:any){
+    let id = this.generateIds()
+    sesion.id = id.toString()
+    console.log("inserto ",sesion);
+    let ofertUri =  `Users/${sesion.userGuest.id}/Chats/${sesion.id}` 
+    let ofertUriCretor =  `Users/${sesion.userCreator.id}/Chats/${sesion.id}` 
+    this.firestore.doc(ofertUri).set(sesion)
+    this.firestore.doc(ofertUriCretor).set(sesion)
+  }
 
+  deleteSesionChat(sesion:SesionChat,user:any){
+    let ofertUri =  `Users/${sesion.userGuest.id}/Chats/${sesion.id}` 
+    let ofertUriCretor =  `Users/${sesion.userCreator.id}/Chats/${sesion.id}` 
+    this.firestore.doc(ofertUri).delete()
+    return this.firestore.doc(ofertUriCretor).delete()
+  }
 
+  addChatMsg(chat:Chat,sesion:SesionChat){
+    let ofertUri =  `Users/${sesion.userGuest.id}/Chats/${sesion.id}/listMsg/${chat.id}` 
+    let ofertUriCretor =  `Users/${sesion.userCreator.id}/Chats/${sesion.id}/listMsg/${chat.id}` 
+    this.firestore.doc(ofertUri).set(chat)
+    this.firestore.doc(ofertUriCretor).set(chat)
+  }
 
+  getListMsg(user:any,sesion:SesionChat){
+    if(!user){
+      let uri =  `Users/${user}/Chats/${sesion.id}/listMsg` 
+      console.log("uri",uri);
+      this.listMsgChat = this.firestore.collection<Chat>(uri).valueChanges();
+    }else{
+      let uri =  `Users/${user}/Chats/${sesion.id}/listMsg` 
+      console.log("uri",uri);
+      this.listMsgChat = this.firestore.collection<Chat>(uri).valueChanges();
+    }
+    return this.listMsgChat
+  }
 
-
-
-
-  callNumber(){
-    
+  getUsersChats(user:any){
+    if(!user){
+      let uri = `Users/${this.currentUser}/Chats`
+      console.log("uri",uri);
+      this.listChatSesions = this.firestore.collection<SesionChat>(uri).valueChanges();
+    }else{
+      let uri = `Users/${user}/Chats`
+      console.log("uri",uri);
+      this.listChatSesions = this.firestore.collection<SesionChat>(uri).valueChanges();
+    }
+    return this.listChatSesions
   }
 
 }

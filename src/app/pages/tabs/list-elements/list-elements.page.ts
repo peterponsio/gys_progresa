@@ -145,16 +145,21 @@ export class ListElementsPage implements OnInit {
   }
 
    async onClickAddFav(ofert:Ofertas){
-    this.visual.loadingProcess()  
+
+    if(this.currentUserId !=undefined){
+      this.visual.loadingProcess()  
     
-    let user  =  await this.storage.get('user');
-    
-    try {
-      this.data.addToFavorites(ofert,user)
-      this.visual.dissMissLoaders()
-    } catch (error) {
-      this.visual.dissMissLoaders()
-      console.log(error);      
+      let user  =  await this.storage.get('user');
+      
+      try {
+        this.data.addToFavorites(ofert,user)
+        this.visual.dissMissLoaders()
+      } catch (error) {
+        this.visual.dissMissLoaders()
+        console.log(error);      
+      }
+    }else{
+      this.visual.alertNotLogged()
     }
   }
 
