@@ -1,5 +1,5 @@
 import { StorageService } from 'src/app/services/storage.service';
-import { Chat, SesionChat, Users } from './../interfaces/models';
+import { Chat, SesionChat, Support, Users } from './../interfaces/models';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -21,6 +21,7 @@ export class DataService {
 
   private categoryCollection: AngularFirestoreCollection<Category> = this.firestore.collection<Category>('categorys');
   private ofertsCollection: AngularFirestoreCollection<Ofertas> = this.firestore.collection<Ofertas>('oferts');
+  private tickets: AngularFirestoreCollection<Support> = this.firestore.collection<Support>('Support');
   private usersCollection:AngularFirestoreCollection<Users> = this.firestore.collection<Users>('Users');
 
   listCategory: Observable<Category[]>;
@@ -160,6 +161,21 @@ export class DataService {
     this.firestore.doc(ofertUriCretor).set(sesion)
   }
 
+  deleteAllSesionChat(user:any){
+    let chats= [] 
+    this.getUsersChats(user).subscribe(res=>{
+      console.log("res",res);
+      chats = res
+      chats.forEach(data=>{
+        let ofertUri =  `Users/${user}/Chats/${data.id}` 
+        console.log(ofertUri);
+        this.firestore.doc(ofertUri).delete()
+      })
+    })
+    this.visuals.dissMissLoaders()
+    this.visuals.alertInfoBasic("Sesiones Eliminadas")
+  }
+
   deleteSesionChat(sesion:SesionChat,user:any){
     let ofertUri =  `Users/${sesion.userGuest.id}/Chats/${sesion.id}` 
     let ofertUriCretor =  `Users/${sesion.userCreator.id}/Chats/${sesion.id}` 
@@ -198,6 +214,23 @@ export class DataService {
       this.listChatSesions = this.firestore.collection<SesionChat>(uri).valueChanges();
     }
     return this.listChatSesions
+  }
+
+  sendTicket(user:any,ticket:any){
+    let tick:Support = {
+      id: "" + this.generateIds(),
+      topic: ticket.titulo,
+      text: ticket.descripcion,
+      sendByGuest: user,
+      created_at:  moment().local().format('YYYY-MM-DD[T]HH:mm:ss')
+    }
+      this.tickets.doc(tick.id).set(tick).then(()=>{
+        this.visuals.dissMissLoaders()
+        this.visuals.alertInfoBasic("Información Enviada")
+      }).catch(err=>{
+        console.log(err);
+        this.visuals.dissMissLoaders()
+      });
   }
 
 }

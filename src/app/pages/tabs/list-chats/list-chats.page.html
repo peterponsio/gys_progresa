@@ -2,7 +2,18 @@
 
     <div class="chatsContainer">
         <p>Mis Mensajes</p>
-        <img src="../../../../assets/icon/imgInsideIcons/dots.svg" alt="">
+        <img id="size-button" src="../../../../assets/icon/imgInsideIcons/dots.svg" alt="">
+        <ion-popover mode="md" trigger="size-button" [dismissOnSelect]="true">
+            <ng-template>
+              <ion-content>
+                <ion-list>
+                  <ion-item (click)="onClickDeleteAll()" [button]="true" [detail]="false">
+                    <ion-label>Eliminar todos</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
     </div>
     <ion-list *ngIf="listChats.length!=0" >
         <ion-item-sliding  *ngFor="let item of listChats">
@@ -25,7 +36,7 @@
             <ion-item-options side="end">
                 <ion-item-option style="width: 60px;" (click)="onClickDeleteSesion(item)" color="danger"> <ion-icon slot="top" name="trash"></ion-icon>
                 </ion-item-option>
-                <ion-item-option style="width: 60px;" color="warning" ><ion-icon name="alert-circle-outline"></ion-icon></ion-item-option>
+                <ion-item-option (click)="onClickReportOfertChat()" style="width: 60px;" color="warning" ><ion-icon name="alert-circle-outline"></ion-icon></ion-item-option>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>

@@ -1,0 +1,30 @@
+
+<ion-content>
+
+  <app-header-basic title=""></app-header-basic>
+
+
+  <form [formGroup]="formAddNew">
+    
+    <div class="ticketContainer">
+      <p>Envianos un ticket y analizaremos tu caso</p>
+    </div>
+
+    <div class="formFieldContainer">
+      <div class="fieldsContainer">
+        <ion-input (keypress)="close($event.keyCode)" formControlName="titulo" type="text" placeholder="Asunto"></ion-input>
+      </div >
+      <p class="infoFieldsText">Maximo 10 caracteres</p>
+      <div style="padding-right: 3vw;"  class="fieldsContainer fieldTextArea">
+        <ion-textarea (keypress)="close($event.keyCode)" formControlName="descripcion" placeholder="Descripción del problema"></ion-textarea>
+      </div>
+      <p class="infoFieldsText">15 caracteres mínimo</p>
+    </div>
+
+    <div *ngIf="showBtn"  class="btnAddContainer">
+      <div class="addBtn">
+        <ion-input type="submit" (click)="createNewTicket()"><p style="width: 100%;">Enviar</p></ion-input>
+      </div>
+    </div>
+  </form>
+</ion-content>
