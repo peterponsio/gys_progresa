@@ -66,6 +66,10 @@ const routes: Routes = [
     path: 'favorites',
     loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
   },
+  {
+    path: 'support-form',
+    loadChildren: () => import('./pages/support-form/support-form.module').then( m => m.SupportFormPageModule)
+  },
 
 
 

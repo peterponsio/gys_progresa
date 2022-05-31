@@ -38,6 +38,10 @@ export class ListChatsPage implements OnInit {
       
     }
 
+    onClickReportOfertChat(){
+      this.visual.alertInfoBasic("Reporte enviado")
+    }
+
   onClickOpemToSesion(sesion: any){
     this.nav.navigateForward(['chat-sesion'],{animated: false,state:{sesion: sesion}})
   }
@@ -59,5 +63,23 @@ export class ListChatsPage implements OnInit {
     }
     
   }
+
+  async onClickDeleteAll(){
+    if(this.listChats.length != 0){
+      this.visual.loadingProcess()
+      try {
+        let user  =  await this.storage.get('user');
+        this.data.deleteAllSesionChat(user)
+      } catch (error) {
+        this.visual.dissMissLoaders()
+        this.visual.alertInfoBasic("Algo salio mal, intentelo de nuevo")
+      }
+      setTimeout(() => {
+        this.visual.dissMissLoaders()
+      }, 2000);
+     }else{
+       this.visual.alertInfoBasic("No hay niguna sesion activa")
+     }
+    }
 
 }

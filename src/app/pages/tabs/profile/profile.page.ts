@@ -58,6 +58,21 @@ export class ProfilePage implements OnInit {
       this.visualService.alertNotLogged()
     }
   }
+  onClickSettings(){
+    if(this.currentUserId !=undefined){
+      this.nav.navigateForward("ajustes", {animated:true,state:{userData:this.currentUserId}})
+    }else{
+      this.visualService.alertNotLogged()
+    }
+  }
+
+  onClickSuport(){
+    if(this.currentUserId !=undefined){
+      this.nav.navigateForward("support-form", {animated:true,state:{userData:this.currentUser}})
+    }else{
+      this.visualService.alertNotLogged()
+    }
+  }
 
   onClickAddProfileImg(){
 

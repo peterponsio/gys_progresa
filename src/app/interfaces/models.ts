@@ -50,4 +50,11 @@ export interface Msg{
     sendByGuest:Users,
     created_at:any
 }
+export interface Support{
+    id:string,
+    topic:string,
+    text:string,
+    sendByGuest:Users,
+    created_at:any
+}
 
