@@ -19,8 +19,8 @@
         <ion-item-sliding  *ngFor="let item of listChats">
             <ion-item (click)="onClickOpemToSesion(item)" style="--padding-end: 20px">
                 <div class="chatSesionContainer" >
-                    <img *ngIf="item.img == ''" style="border-radius: 100%;width: 90px;height: 69px;margin-right: 3vw;" src="https://placeholder.pics/svg/2000x2000" alt="">
-                    <img *ngIf="item.img != ''" style="border-radius: 100%;width: 90px;height: 69px;margin-right: 3vw;" src="{{item.img}}" alt="">
+                    <img *ngIf="item.img == ''" style="border-radius: 100%;width: 69px;height: 69px;margin-right: 3vw;" src="https://placeholder.pics/svg/2000x2000" alt="">
+                    <img *ngIf="item.img != ''" style="border-radius: 100%;width: 69px;height: 69px;margin-right: 3vw;" src="{{item.img}}" alt="">
                     <div class="infoSesion">
                         <p *ngIf="currentUserId != item.userCreator.id"> {{item.userCreator.name}}</p>
                         <p *ngIf="currentUserId == item.userCreator.id"> {{item.userGuest.name}}</p>

@@ -60,6 +60,11 @@ export class ChatSesionPage implements OnInit {
   ngOnInit() {
     this.chatSesion = this.router.getCurrentNavigation().extras.state.sesion;
     console.log(this.chatSesion);
+
+    setTimeout(() => {
+      this.visual.dissMissLoaders()
+    }, 3000);
+    
   }
 
   generateIds():number{
