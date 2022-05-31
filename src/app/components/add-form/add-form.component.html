@@ -33,7 +33,7 @@
       <div class="fieldsContainer">
         <ion-input (keypress)="close($event.keyCode)" formControlName="titulo" type="text" placeholder="Título"></ion-input>
       </div >
-      <p class="infoFieldsText">¿Qué vendes u ofreces? Maximo 10 caracteres</p>
+      <p class="infoFieldsText">¿Qué vendes u ofreces? Maximo 15 caracteres</p>
       <div style="padding-right: 3vw;"  class="fieldsContainer fieldTextArea">
         <ion-textarea (keypress)="close($event.keyCode)" formControlName="descripcion" placeholder="Descripción"></ion-textarea>
       </div>
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <p class="infoFieldsText">Localidad o provincia, maximo 15 caracteres</p>
+      <p class="infoFieldsText">Localidad o provincia, maximo 25 caracteres</p>
     </div>
 
     <div *ngIf="showBtn"  class="btnAddContainer">

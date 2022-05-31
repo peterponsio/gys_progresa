@@ -62,10 +62,10 @@ export class AddFormComponent implements OnInit {
 
   formAddNew: FormGroup = this.formBuilder.group(
     {
-      titulo: ['',[Validators.required,Validators.minLength(1)]],
+      titulo: ['',[Validators.required,Validators.minLength(1),Validators.maxLength(15)]],
       descripcion: ['',[Validators.required,Validators.minLength(15)]],
       precio: ['',[Validators.required,Validators.minLength(1),Validators.pattern(/^[0-9]*$/)]],
-      location: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
+      location: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
     }
   )
 
